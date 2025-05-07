@@ -8,8 +8,14 @@ from pathlib import Path
 from flask import Flask, render_template, jsonify, request
 import yaml
 
-#Creates a flask app
-app = Flask(__name__)
+# Add the project root to the Python path
+project_root = Path(__file__).parent.parent.parent
+sys.path.append(str(project_root))
+
+# Creates a flask app
+app = Flask(__name__, 
+           template_folder=str(project_root / 'templates'),
+           static_folder=str(project_root / 'static'))
 
 #Key element, this creates a module box object that contains the manifest and content of a module
 #The manifest is the metadata of the module, and the content is the files of the module
@@ -29,7 +35,7 @@ class ModuleBox:
             print(f"Loaded manifest: {json.dumps(self.manifest, indent=2)}")
             
             # Extract content to temporary directory
-            temp_dir = Path('temp_content')
+            temp_dir = project_root / 'data' / 'temp_content'
             temp_dir.mkdir(exist_ok=True)
             crate.extractall(temp_dir)
             self.content_path = temp_dir
@@ -45,7 +51,7 @@ class ModuleBox:
         return True
 
 def load_progress():
-    progress_file = Path('progress.yaml')
+    progress_file = project_root / 'data' / 'progress' / 'progress.yaml'
     try:
         if progress_file.exists():
             with open(progress_file, 'r') as f:
@@ -70,7 +76,8 @@ def save_progress(progress):
             progress['modules'] = {}
             
         print(f"Saving progress data: {json.dumps(progress, indent=2)}")
-        with open('progress.yaml', 'w') as f:
+        progress_file = project_root / 'data' / 'progress' / 'progress.yaml'
+        with open(progress_file, 'w') as f:
             yaml.dump(progress, f, default_flow_style=False)
     except Exception as e:
         print(f"Error saving progress: {str(e)}")
@@ -80,7 +87,8 @@ def save_progress(progress):
 @app.route('/')
 def index():
     print("Index route accessed")
-    crates = [f for f in os.listdir('.') if f.endswith('.crate')]
+    crates_dir = project_root / 'modules' / 'crates'
+    crates = [f.name for f in crates_dir.glob('*.crate')]
     print(f"Found crates: {crates}")
     progress = load_progress()
     return render_template('index.html', crates=crates, progress=progress)
@@ -89,8 +97,8 @@ def index():
 @app.route('/module/<module_name>')
 def view_module(module_name):
     print(f"Viewing module: {module_name}")
-    crate_path = f"{module_name}.crate"
-    if not os.path.exists(crate_path):
+    crate_path = project_root / 'modules' / 'crates' / f"{module_name}.crate"
+    if not crate_path.exists():
         print(f"Crate not found: {crate_path}")
         return "Module not found", 404
     
@@ -119,7 +127,7 @@ def view_module(module_name):
     return render_template('module.html', 
                          module=module.manifest,
                          content_path=module.content_path,
-                         progress=progress)  # Pass the entire progress object to the template
+                         progress=progress)
 
 #This route is used to handle the progress of the module
 @app.route('/progress', methods=['GET', 'POST'])
@@ -154,12 +162,12 @@ def handle_progress():
 
 #This is the main function that runs the web server
 def main():
-    # Ensure we're running from the USB drive
-    if not os.path.exists('templates'):
-        print("Error: Must run from the CyberCrate USB drive")
+    # Ensure we're running from the correct directory
+    if not (project_root / 'templates').exists():
+        print("Error: Must run from the CyberCrate project root")
         sys.exit(1)
     #This starts the web server
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)
 
 if __name__ == '__main__':
     main()
