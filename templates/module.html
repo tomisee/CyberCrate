@@ -114,6 +114,7 @@
         .progress-bar.not-started {
             background: #f0f0f0;
             color: #7f8c8d;
+            min-width: 100px;
         }
     </style>
 </head>
@@ -184,7 +185,7 @@
             const currentStatus = currentProgress.modules['{{ module.name }}']?.tasks[taskId] || 'pending';
             const newStatus = currentStatus === 'completed' ? 'pending' : 'completed';
             
-            // Update the progress data
+            // Update the progress data (only for this module)
             if (!currentProgress.modules) {
                 currentProgress.modules = {};
             }
@@ -193,8 +194,7 @@
                     tasks: {}
                 };
             }
-            
-            // Update the task status
+            // Only update the current module's tasks
             currentProgress.modules['{{ module.name }}'].tasks[taskId] = newStatus;
             console.log('Updated progress:', currentProgress);
             
@@ -202,13 +202,19 @@
             updateTaskStatus(taskId, newStatus);
             updateProgressBar();
             
-            // Send the updated progress to the server
+            // Send only the updated progress for this module to the server
+            const updatedProgress = JSON.parse(JSON.stringify(currentProgress));
+            Object.keys(updatedProgress.modules).forEach(moduleKey => {
+                if (moduleKey !== '{{ module.name }}') {
+                    delete updatedProgress.modules[moduleKey];
+                }
+            });
             fetch('/progress', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(currentProgress)
+                body: JSON.stringify(updatedProgress)
             })
             .then(response => {
                 if (!response.ok) {
@@ -218,9 +224,9 @@
             })
             .then(data => {
                 console.log('Progress update response:', data);
-                // Update our local progress with the server response
-                if (data.progress) {
-                    currentProgress = data.progress;
+                // Merge the updated module's progress back into the global progress
+                if (data.progress && data.progress.modules && data.progress.modules['{{ module.name }}']) {
+                    currentProgress.modules['{{ module.name }}'] = data.progress.modules['{{ module.name }}'];
                 }
             })
             .catch(error => {

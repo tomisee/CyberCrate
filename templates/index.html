@@ -108,18 +108,15 @@
                 <div class="progress-container">
                     <div class="progress-bar" style="width: 0%">Not Started</div>
                 </div>
-                <a href="/module/{{ crate.filename.replace('.crate', '') }}" class="button">Start Module</a>
+                <a href="/module/{{ crate.url_name }}" class="button">Start Module</a>
             </div>
             {% endfor %}
         </div>
     </div>
 
     <script>
-        // Initialize progress data
-        const progressData = {{ progress|tojson|safe }};
-        
         // Update progress display
-        function updateProgress() {
+        function updateProgress(progressData) {
             document.querySelectorAll('.module-card').forEach(card => {
                 const displayName = card.dataset.displayName;
                 const progressBar = card.querySelector('.progress-bar');
@@ -150,20 +147,19 @@
             });
         }
 
-        // Auto-save progress
-        function saveProgress() {
-            fetch('/progress', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(progressData)
-            });
+        // Fetch latest progress from the server and update bars
+        function fetchAndUpdateProgress() {
+            fetch('/progress')
+                .then(response => response.json())
+                .then(data => {
+                    updateProgress(data);
+                });
         }
 
         // Initialize progress on page load
-        document.addEventListener('DOMContentLoaded', updateProgress);
-        setInterval(saveProgress, 30000);
+        document.addEventListener('DOMContentLoaded', fetchAndUpdateProgress);
+        // Optionally, refresh every 30 seconds
+        setInterval(fetchAndUpdateProgress, 30000);
     </script>
 </body>
 </html> 

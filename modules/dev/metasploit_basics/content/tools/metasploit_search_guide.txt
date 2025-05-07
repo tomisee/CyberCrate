@@ -1,0 +1,8 @@
+Metasploit Search Guide
+=======================
+
+1. At the msf6 > prompt, type:
+   search vsftpd
+
+2. Replace 'vsftpd' with the name of the service or vulnerability you want to search for.
+3. Review the list of matching modules and note their names for use in the next task. 

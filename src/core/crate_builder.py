@@ -15,14 +15,23 @@ def calculate_file_hash(file_path):
     return sha256_hash.hexdigest()
 
 def process_task_file(task_file):
-    """Process a task file (YAML or JSON) and return its contents."""
+    """Process a task file (YAML or JSON) and return its contents as a list of tasks."""
+    task_file = Path(task_file)
     with open(task_file, 'r') as f:
-        if task_file.endswith('.yaml') or task_file.endswith('.yml'):
-            return yaml.safe_load(f)
-        elif task_file.endswith('.json'):
-            return json.load(f)
+        if task_file.suffix in ['.yaml', '.yml']:
+            data = yaml.safe_load(f)
+        elif task_file.suffix == '.json':
+            data = json.load(f)
         else:
             raise ValueError(f"Unsupported task file format: {task_file}")
+    # If the data is a dict with a 'tasks' key, extract the list
+    if isinstance(data, dict) and 'tasks' in data:
+        return data['tasks']
+    # If the data is already a list, return as is
+    if isinstance(data, list):
+        return data
+    # Otherwise, wrap in a list
+    return [data]
 
 def build_crate(module_dir, output_dir):
     """Build a .crate file from a module directory."""
@@ -39,16 +48,25 @@ def build_crate(module_dir, output_dir):
     
     # Process task files
     tasks = []
+    module_name = module_dir.name
     for task_file in task_files:
-        task_data = process_task_file(task_file)
-        if isinstance(task_data, list):
-            tasks.extend(task_data)
-        else:
-            tasks.append(task_data)
+        # Load the raw data to extract the name if present
+        with open(task_file, 'r') as f:
+            if task_file.suffix in ['.yaml', '.yml']:
+                data = yaml.safe_load(f)
+            elif task_file.suffix == '.json':
+                data = json.load(f)
+            else:
+                raise ValueError(f"Unsupported task file format: {task_file}")
+        if isinstance(data, dict) and 'name' in data:
+            module_name = data['name']
+        # Now extract the tasks as before
+        tasks.extend(process_task_file(task_file))
     
     # Create manifest
     manifest = {
         "version": "1.0",
+        "name": module_name,
         "hashes": {},
         "tasks": tasks
     }

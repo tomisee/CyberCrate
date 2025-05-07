@@ -1,0 +1,33 @@
+{
+    "name": "Metasploit Basics",
+    "version": "1.0",
+    "tasks": [
+        {
+            "id": "task1",
+            "title": "Starting Metasploit Console",
+            "description": "Launch the Metasploit Framework console and verify it starts successfully.",
+            "resources": [
+                "tools/metasploit_start_guide.txt"
+            ],
+            "expected_output": "msf6 > prompt visible in terminal"
+        },
+        {
+            "id": "task2",
+            "title": "Searching for Exploits",
+            "description": "Use the Metasploit search command to find exploits for a given service (e.g., vsftpd).",
+            "resources": [
+                "tools/metasploit_search_guide.txt"
+            ],
+            "expected_output": "List of matching exploits displayed in msfconsole"
+        },
+        {
+            "id": "task3",
+            "title": "Running an Exploit Module",
+            "description": "Select and run an exploit module in Metasploit against a test target.",
+            "resources": [
+                "tools/metasploit_exploit_guide.txt"
+            ],
+            "expected_output": "Exploit attempt output and session creation (if successful)"
+        }
+    ]
+} 

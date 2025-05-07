@@ -1,0 +1,9 @@
+Metasploit Start Guide
+======================
+
+1. Open a terminal window.
+2. Type: msfconsole
+3. Wait for the Metasploit Framework to load.
+4. You should see the prompt:
+   msf6 >
+5. If you see this prompt, Metasploit is ready to use. 

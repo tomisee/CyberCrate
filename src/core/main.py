@@ -95,10 +95,12 @@ def index():
                 manifest_data = crate.read('manifest.json')
                 manifest = json.loads(manifest_data)
                 display_name = manifest.get('name', crate_file.stem)
+                url_name = display_name.replace(' ', '_')
                 num_tasks = len(manifest.get('tasks', []))
                 crates.append({
                     'filename': crate_file.name,
                     'display_name': display_name,
+                    'url_name': url_name,
                     'num_tasks': num_tasks
                 })
         except Exception as e:
@@ -108,64 +110,66 @@ def index():
     return render_template('index.html', crates=crates, progress=progress)
 
 #This route is used to view a module
-@app.route('/module/<module_name>')
-def view_module(module_name):
-    print(f"Viewing module: {module_name}")
-    crate_path = project_root / 'modules' / 'crates' / f"{module_name}.crate"
-    if not crate_path.exists():
-        print(f"Crate not found: {crate_path}")
-        return "Module not found", 404
-    
-    #This creates a module box object
-    module = ModuleBox(crate_path)
-    if not module.verify_integrity():
-        print("Module integrity check failed")
-        return "Module integrity check failed", 400
-    
-    # Load progress data
-    progress = load_progress()
-    print(f"Loaded progress: {json.dumps(progress, indent=2)}")
-    
-    # Get module progress
-    module_progress = progress.get('modules', {}).get(module_name, {}).get('tasks', {})
-    print(f"Module progress: {json.dumps(module_progress, indent=2)}")
-    
-    # Update task status in module data
-    for task in module.manifest['tasks']:
-        task_id = task['id']
-        task['status'] = module_progress.get(task_id, 'pending')
-        print(f"Task {task_id} status: {task['status']}")
-    
-    #This renders the module page
-    print(f"Rendering module with data: {json.dumps(module.manifest, indent=2)}")
-    return render_template('module.html', 
-                         module=module.manifest,
-                         content_path=module.content_path,
-                         progress=progress)
+@app.route('/module/<url_name>')
+def view_module(url_name):
+    print(f"Viewing module: {url_name}")
+    crates_dir = project_root / 'modules' / 'crates'
+    # Find the crate whose manifest name matches url_name (spaces replaced with underscores)
+    for crate_file in crates_dir.glob('*.crate'):
+        with zipfile.ZipFile(crate_file, 'r') as crate:
+            manifest_data = crate.read('manifest.json')
+            manifest = json.loads(manifest_data)
+            display_name = manifest.get('name', crate_file.stem)
+            if display_name.replace(' ', '_') == url_name:
+                # Found the correct crate
+                if not ModuleBox(crate_file).verify_integrity():
+                    print("Module integrity check failed")
+                    return "Module integrity check failed", 400
+                module = ModuleBox(crate_file)
+                progress = load_progress()
+                module_progress = progress.get('modules', {}).get(display_name, {}).get('tasks', {})
+                for task in module.manifest['tasks']:
+                    task_id = task['id']
+                    task['status'] = module_progress.get(task_id, 'pending')
+                return render_template('module.html', 
+                                      module=module.manifest,
+                                      content_path=module.content_path,
+                                      progress=progress)
+    print(f"Crate not found for url_name: {url_name}")
+    return "Module not found", 404
 
 #This route is used to handle the progress of the module
 @app.route('/progress', methods=['GET', 'POST'])
 def handle_progress():
     if request.method == 'POST':
         try:
-            progress = request.json
-            print(f"Received progress update: {json.dumps(progress, indent=2)}")
+            incoming_progress = request.json
+            print(f"Received progress update: {json.dumps(incoming_progress, indent=2)}")
             
             # Validate the progress data structure
-            if not isinstance(progress, dict):
+            if not isinstance(incoming_progress, dict):
                 raise ValueError("Progress data must be a dictionary")
-            if 'modules' not in progress:
-                progress['modules'] = {}
+            if 'modules' not in incoming_progress:
+                incoming_progress['modules'] = {}
+            
+            # Load existing progress
+            existing_progress = load_progress()
+            if 'modules' not in existing_progress:
+                existing_progress['modules'] = {}
+            
+            # Merge: update only the modules present in the incoming progress
+            for module_name, module_data in incoming_progress['modules'].items():
+                existing_progress['modules'][module_name] = module_data
             
             # Ensure all task statuses are valid
-            for module_name, module_data in progress['modules'].items():
+            for module_name, module_data in existing_progress['modules'].items():
                 if 'tasks' in module_data:
                     for task_id, status in module_data['tasks'].items():
                         if status not in ['completed', 'pending']:
                             module_data['tasks'][task_id] = 'pending'
             
-            save_progress(progress)
-            return jsonify({'status': 'success', 'progress': progress})
+            save_progress(existing_progress)
+            return jsonify({'status': 'success', 'progress': existing_progress})
         except Exception as e:
             print(f"Error saving progress: {str(e)}")
             return jsonify({'status': 'error', 'message': str(e)}), 500
