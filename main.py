@@ -8,8 +8,11 @@ from pathlib import Path
 from flask import Flask, render_template, jsonify, request
 import yaml
 
+#Creates a flask app
 app = Flask(__name__)
 
+#Key element, this creates a module box object that contains the manifest and content of a module
+#The manifest is the metadata of the module, and the content is the files of the module
 class ModuleBox:
     def __init__(self, crate_path):
         self.crate_path = crate_path
@@ -17,6 +20,7 @@ class ModuleBox:
         self.content_path = None
         self.load_manifest()
 
+    #This function loads the manifest from the crate
     def load_manifest(self):
         print(f"Loading manifest from {self.crate_path}")
         with zipfile.ZipFile(self.crate_path, 'r') as crate:
@@ -42,15 +46,37 @@ class ModuleBox:
 
 def load_progress():
     progress_file = Path('progress.yaml')
-    if progress_file.exists():
-        with open(progress_file, 'r') as f:
-            return yaml.safe_load(f)
+    try:
+        if progress_file.exists():
+            with open(progress_file, 'r') as f:
+                data = yaml.safe_load(f)
+                print(f"Loaded progress data: {json.dumps(data, indent=2)}")
+                # Ensure the data structure is correct
+                if not isinstance(data, dict):
+                    data = {'modules': {}}
+                if 'modules' not in data:
+                    data['modules'] = {}
+                return data
+    except Exception as e:
+        print(f"Error loading progress: {str(e)}")
     return {'modules': {}}
 
 def save_progress(progress):
-    with open('progress.yaml', 'w') as f:
-        yaml.dump(progress, f)
+    try:
+        # Ensure the data structure is correct
+        if not isinstance(progress, dict):
+            progress = {'modules': {}}
+        if 'modules' not in progress:
+            progress['modules'] = {}
+            
+        print(f"Saving progress data: {json.dumps(progress, indent=2)}")
+        with open('progress.yaml', 'w') as f:
+            yaml.dump(progress, f, default_flow_style=False)
+    except Exception as e:
+        print(f"Error saving progress: {str(e)}")
+        raise
 
+#This route is used to view the index page
 @app.route('/')
 def index():
     print("Index route accessed")
@@ -59,6 +85,7 @@ def index():
     progress = load_progress()
     return render_template('index.html', crates=crates, progress=progress)
 
+#This route is used to view a module
 @app.route('/module/<module_name>')
 def view_module(module_name):
     print(f"Viewing module: {module_name}")
@@ -67,32 +94,71 @@ def view_module(module_name):
         print(f"Crate not found: {crate_path}")
         return "Module not found", 404
     
+    #This creates a module box object
     module = ModuleBox(crate_path)
     if not module.verify_integrity():
         print("Module integrity check failed")
         return "Module integrity check failed", 400
     
+    # Load progress data
+    progress = load_progress()
+    print(f"Loaded progress: {json.dumps(progress, indent=2)}")
+    
+    # Get module progress
+    module_progress = progress.get('modules', {}).get(module_name, {}).get('tasks', {})
+    print(f"Module progress: {json.dumps(module_progress, indent=2)}")
+    
+    # Update task status in module data
+    for task in module.manifest['tasks']:
+        task_id = task['id']
+        task['status'] = module_progress.get(task_id, 'pending')
+        print(f"Task {task_id} status: {task['status']}")
+    
+    #This renders the module page
     print(f"Rendering module with data: {json.dumps(module.manifest, indent=2)}")
     return render_template('module.html', 
                          module=module.manifest,
-                         content_path=module.content_path)
+                         content_path=module.content_path,
+                         progress=progress)  # Pass the entire progress object to the template
 
+#This route is used to handle the progress of the module
 @app.route('/progress', methods=['GET', 'POST'])
 def handle_progress():
     if request.method == 'POST':
-        progress = request.json
-        save_progress(progress)
-        return jsonify({'status': 'success'})
+        try:
+            progress = request.json
+            print(f"Received progress update: {json.dumps(progress, indent=2)}")
+            
+            # Validate the progress data structure
+            if not isinstance(progress, dict):
+                raise ValueError("Progress data must be a dictionary")
+            if 'modules' not in progress:
+                progress['modules'] = {}
+            
+            # Ensure all task statuses are valid
+            for module_name, module_data in progress['modules'].items():
+                if 'tasks' in module_data:
+                    for task_id, status in module_data['tasks'].items():
+                        if status not in ['completed', 'pending']:
+                            module_data['tasks'][task_id] = 'pending'
+            
+            save_progress(progress)
+            return jsonify({'status': 'success', 'progress': progress})
+        except Exception as e:
+            print(f"Error saving progress: {str(e)}")
+            return jsonify({'status': 'error', 'message': str(e)}), 500
     
-    return jsonify(load_progress())
+    progress = load_progress()
+    print(f"Returning progress: {json.dumps(progress, indent=2)}")
+    return jsonify(progress)
 
+#This is the main function that runs the web server
 def main():
     # Ensure we're running from the USB drive
     if not os.path.exists('templates'):
         print("Error: Must run from the CyberCrate USB drive")
         sys.exit(1)
-    
-    # Start the web server
+    #This starts the web server
     app.run(host='127.0.0.1', port=5000, debug=True)
 
 if __name__ == '__main__':

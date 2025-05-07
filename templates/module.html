@@ -120,7 +120,7 @@
                     </ul>
                 </div>
                 {% endif %}
-                <button class="button" onclick="markTaskComplete('{{ task.id }}')">
+                <button class="button" onclick="markTaskComplete('{{ task.id }}')" data-task-id="{{ task.id }}">
                     Mark as Complete
                 </button>
             </li>
@@ -129,20 +129,74 @@
     </div>
 
     <script>
+        // Store the current progress in a global variable
+        let currentProgress = {{ progress|tojson|safe }};
+        
+        function updateTaskStatus(taskId, status) {
+            const taskElement = document.querySelector(`[data-task-id="${taskId}"]`).closest('.task-item');
+            const statusElement = taskElement.querySelector('.task-status');
+            statusElement.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+            statusElement.className = `task-status status-${status}`;
+        }
+        
         function markTaskComplete(taskId) {
+            console.log('Marking task complete:', taskId);
+            
+            // Update the progress data
+            if (!currentProgress.modules) {
+                currentProgress.modules = {};
+            }
+            if (!currentProgress.modules['{{ module.name }}']) {
+                currentProgress.modules['{{ module.name }}'] = {
+                    tasks: {}
+                };
+            }
+            
+            // Update the task status
+            currentProgress.modules['{{ module.name }}'].tasks[taskId] = 'completed';
+            console.log('Updated progress:', currentProgress);
+            
+            // Update the UI immediately
+            updateTaskStatus(taskId, 'completed');
+            
+            // Send the updated progress to the server
             fetch('/progress', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    taskId: taskId,
-                    status: 'completed'
-                })
-            }).then(() => {
-                window.location.reload();
+                body: JSON.stringify(currentProgress)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Progress update response:', data);
+                // Update our local progress with the server response
+                if (data.progress) {
+                    currentProgress = data.progress;
+                }
+            })
+            .catch(error => {
+                console.error('Error updating progress:', error);
+                // Revert the UI if the save failed
+                updateTaskStatus(taskId, 'pending');
+                alert('Failed to update progress. Please try again.');
             });
         }
+        
+        // Initialize task statuses on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const moduleProgress = currentProgress.modules['{{ module.name }}'];
+            if (moduleProgress && moduleProgress.tasks) {
+                Object.entries(moduleProgress.tasks).forEach(([taskId, status]) => {
+                    updateTaskStatus(taskId, status);
+                });
+            }
+        });
     </script>
 </body>
 </html> 
