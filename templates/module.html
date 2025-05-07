@@ -120,8 +120,12 @@
                     </ul>
                 </div>
                 {% endif %}
-                <button class="button" onclick="markTaskComplete('{{ task.id }}')" data-task-id="{{ task.id }}">
-                    Mark as Complete
+                <button class="button" onclick="toggleTaskStatus('{{ task.id }}')" data-task-id="{{ task.id }}">
+                    {% if task.status == 'completed' %}
+                        Mark as Pending
+                    {% else %}
+                        Mark as Complete
+                    {% endif %}
                 </button>
             </li>
             {% endfor %}
@@ -135,12 +139,22 @@
         function updateTaskStatus(taskId, status) {
             const taskElement = document.querySelector(`[data-task-id="${taskId}"]`).closest('.task-item');
             const statusElement = taskElement.querySelector('.task-status');
+            const buttonElement = taskElement.querySelector('button');
+            
+            // Update status display
             statusElement.textContent = status.charAt(0).toUpperCase() + status.slice(1);
             statusElement.className = `task-status status-${status}`;
+            
+            // Update button text
+            buttonElement.textContent = status === 'completed' ? 'Mark as Pending' : 'Mark as Complete';
         }
         
-        function markTaskComplete(taskId) {
-            console.log('Marking task complete:', taskId);
+        function toggleTaskStatus(taskId) {
+            console.log('Toggling task status:', taskId);
+            
+            // Get current status
+            const currentStatus = currentProgress.modules['{{ module.name }}']?.tasks[taskId] || 'pending';
+            const newStatus = currentStatus === 'completed' ? 'pending' : 'completed';
             
             // Update the progress data
             if (!currentProgress.modules) {
@@ -153,11 +167,11 @@
             }
             
             // Update the task status
-            currentProgress.modules['{{ module.name }}'].tasks[taskId] = 'completed';
+            currentProgress.modules['{{ module.name }}'].tasks[taskId] = newStatus;
             console.log('Updated progress:', currentProgress);
             
             // Update the UI immediately
-            updateTaskStatus(taskId, 'completed');
+            updateTaskStatus(taskId, newStatus);
             
             // Send the updated progress to the server
             fetch('/progress', {
@@ -183,7 +197,7 @@
             .catch(error => {
                 console.error('Error updating progress:', error);
                 // Revert the UI if the save failed
-                updateTaskStatus(taskId, 'pending');
+                updateTaskStatus(taskId, currentStatus);
                 alert('Failed to update progress. Please try again.');
             });
         }
