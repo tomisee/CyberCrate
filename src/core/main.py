@@ -88,7 +88,21 @@ def save_progress(progress):
 def index():
     print("Index route accessed")
     crates_dir = project_root / 'modules' / 'crates'
-    crates = [f.name for f in crates_dir.glob('*.crate')]
+    crates = []
+    for crate_file in crates_dir.glob('*.crate'):
+        try:
+            with zipfile.ZipFile(crate_file, 'r') as crate:
+                manifest_data = crate.read('manifest.json')
+                manifest = json.loads(manifest_data)
+                display_name = manifest.get('name', crate_file.stem)
+                num_tasks = len(manifest.get('tasks', []))
+                crates.append({
+                    'filename': crate_file.name,
+                    'display_name': display_name,
+                    'num_tasks': num_tasks
+                })
+        except Exception as e:
+            print(f"Error reading manifest from {crate_file}: {e}")
     print(f"Found crates: {crates}")
     progress = load_progress()
     return render_template('index.html', crates=crates, progress=progress)
