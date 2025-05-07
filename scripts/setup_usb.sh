@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Get the directory where this script is located (project root)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$SCRIPT_DIR/.."
+
 # Check if USB path is provided
 if [ -z "$1" ]; then
     echo "Usage: $0 /path/to/usb"
@@ -9,45 +13,71 @@ fi
 USB_PATH="$1"
 
 # Create necessary directories
-mkdir -p "$USB_PATH/cybercrate"
+mkdir -p "$USB_PATH/cybercrate/src/core"
+mkdir -p "$USB_PATH/cybercrate/src/utils"
 mkdir -p "$USB_PATH/cybercrate/templates"
-mkdir -p "$USB_PATH/cybercrate/example_crates"
-mkdir -p "$USB_PATH/cybercrate/progress_backups"
+mkdir -p "$USB_PATH/cybercrate/modules/crates"
+mkdir -p "$USB_PATH/cybercrate/data/progress"
+mkdir -p "$USB_PATH/cybercrate/data/backups"
 
-# Copy main files
-cp main.py "$USB_PATH/cybercrate/"
-cp crate_builder.py "$USB_PATH/cybercrate/"
-cp requirements.txt "$USB_PATH/cybercrate/"
-cp -r templates/* "$USB_PATH/cybercrate/templates/"
-cp -r example_crates/* "$USB_PATH/cybercrate/example_crates/"
+# Copy core application files
+cp "$PROJECT_ROOT/src/core/main.py" "$USB_PATH/cybercrate/src/core/"
+cp "$PROJECT_ROOT/src/core/crate_builder.py" "$USB_PATH/cybercrate/src/core/"
 
-# Create a fresh progress.yaml file
-cat > "$USB_PATH/cybercrate/progress.yaml" << 'EOF'
+# Copy utils (if any)
+if [ -d "$PROJECT_ROOT/src/utils" ]; then
+    cp -r "$PROJECT_ROOT/src/utils"/* "$USB_PATH/cybercrate/src/utils/"
+fi
+
+# Copy templates
+cp -r "$PROJECT_ROOT/templates"/* "$USB_PATH/cybercrate/templates/"
+
+# Copy module crates (skip AppleDouble files)
+for crate in "$PROJECT_ROOT/modules/crates/"*.crate; do
+    basename=$(basename "$crate")
+    if [[ "$basename" != ._* ]]; then
+        cp "$crate" "$USB_PATH/cybercrate/modules/crates/"
+    fi
+done
+
+# Copy requirements.txt
+cp "$PROJECT_ROOT/requirements.txt" "$USB_PATH/cybercrate/"
+
+# Create a fresh progress.yaml file in the correct location
+cat > "$USB_PATH/cybercrate/data/progress/progress.yaml" << EOF
 modules: {}
 EOF
 
 # Create virtual environment on USB
 cd "$USB_PATH/cybercrate"
+# Remove any existing venv for a clean install
+if [ -d venv ]; then
+    rm -rf venv
+fi
 python3 -m venv venv
 source venv/bin/activate
+# Upgrade pip to latest version
+pip install --upgrade pip
 pip install -r requirements.txt
+# Clear pip cache
+pip cache purge
 
 # Create a launcher script
-cat > "$USB_PATH/cybercrate/start_cybercrate.sh" << 'EOF'
+cat > "$USB_PATH/cybercrate/start_cybercrate.sh" << EOF
 #!/bin/bash
 cd "$(dirname "$0")"
 source venv/bin/activate
-python3 main.py
+python3 src/core/main.py
 EOF
 
 # Create reset progress script
-cat > "$USB_PATH/cybercrate/reset_progress.sh" << 'EOF'
+cat > "$USB_PATH/cybercrate/reset_progress.sh" << RESET_EOF
 #!/bin/bash
 
 # Get the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROGRESS_FILE="$SCRIPT_DIR/progress.yaml"
-BACKUP_DIR="$SCRIPT_DIR/progress_backups"
+PROGRESS_FILE="$SCRIPT_DIR/data/progress/progress.yaml"
+BACKUP_DIR="$SCRIPT_DIR/data/backups"
 
 # Create backup directory if it doesn't exist
 mkdir -p "$BACKUP_DIR"
@@ -61,17 +91,20 @@ if [ -f "$PROGRESS_FILE" ]; then
 fi
 
 # Create fresh progress file
-cat > "$PROGRESS_FILE" << 'EOF'
+cat > "$PROGRESS_FILE" << PROGRESS_EOF
 modules: {}
-EOF
+PROGRESS_EOF
 
 echo "Progress has been reset to default state (all tasks pending)"
-echo "A backup of your previous progress has been saved in the progress_backups directory"
-EOF
+echo "A backup of your previous progress has been saved in the data/backups directory"
+RESET_EOF
 
 # Make scripts executable
 chmod +x "$USB_PATH/cybercrate/start_cybercrate.sh"
 chmod +x "$USB_PATH/cybercrate/reset_progress.sh"
+
+# Remove AppleDouble files from the USB
+find "$USB_PATH/cybercrate" -name '._*' -delete
 
 echo "CyberCrate has been set up on your USB drive at $USB_PATH/cybercrate"
 echo "To start CyberCrate, run: ./start_cybercrate.sh"
