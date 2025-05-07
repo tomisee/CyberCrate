@@ -259,12 +259,15 @@
             if (completedTasks === 0) {
                 progressBar.className = 'progress-bar not-started';
                 progressBar.textContent = 'Not Started';
+                progressBar.style.color = '#7f8c8d';
             } else if (completedTasks === totalTasks) {
                 progressBar.className = 'progress-bar completed';
                 progressBar.textContent = 'Completed';
+                progressBar.style.color = 'white';
             } else {
                 progressBar.className = 'progress-bar';
                 progressBar.textContent = `${Math.round(progressPercentage)}% Complete`;
+                progressBar.style.color = '#2c3e50';
             }
         }
     </script>
