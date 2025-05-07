@@ -1,0 +1,4 @@
+tasks:
+ - description: "Setup a Kali Virtual Machine"
+ - description: "Installed VM Tools"
+ - description: "Started Wireshark using the terminal"

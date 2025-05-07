@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+import os
+import sys
+import json
+import zipfile
+import hashlib
+from pathlib import Path
+from flask import Flask, render_template, jsonify, request
+import yaml
+
+app = Flask(__name__)
+
+class ModuleBox:
+    def __init__(self, crate_path):
+        self.crate_path = crate_path
+        self.manifest = None
+        self.content_path = None
+        self.load_manifest()
+
+    def load_manifest(self):
+        print(f"Loading manifest from {self.crate_path}")
+        with zipfile.ZipFile(self.crate_path, 'r') as crate:
+            manifest_data = crate.read('manifest.json')
+            self.manifest = json.loads(manifest_data)
+            print(f"Loaded manifest: {json.dumps(self.manifest, indent=2)}")
+            
+            # Extract content to temporary directory
+            temp_dir = Path('temp_content')
+            temp_dir.mkdir(exist_ok=True)
+            crate.extractall(temp_dir)
+            self.content_path = temp_dir
+
+    def verify_integrity(self):
+        with zipfile.ZipFile(self.crate_path, 'r') as crate:
+            for file_info in crate.infolist():
+                if file_info.filename in self.manifest['hashes']:
+                    data = crate.read(file_info.filename)
+                    file_hash = hashlib.sha256(data).hexdigest()
+                    if file_hash != self.manifest['hashes'][file_info.filename]:
+                        return False
+        return True
+
+def load_progress():
+    progress_file = Path('progress.yaml')
+    if progress_file.exists():
+        with open(progress_file, 'r') as f:
+            return yaml.safe_load(f)
+    return {'modules': {}}
+
+def save_progress(progress):
+    with open('progress.yaml', 'w') as f:
+        yaml.dump(progress, f)
+
+@app.route('/')
+def index():
+    print("Index route accessed")
+    crates = [f for f in os.listdir('.') if f.endswith('.crate')]
+    print(f"Found crates: {crates}")
+    progress = load_progress()
+    return render_template('index.html', crates=crates, progress=progress)
+
+@app.route('/module/<module_name>')
+def view_module(module_name):
+    print(f"Viewing module: {module_name}")
+    crate_path = f"{module_name}.crate"
+    if not os.path.exists(crate_path):
+        print(f"Crate not found: {crate_path}")
+        return "Module not found", 404
+    
+    module = ModuleBox(crate_path)
+    if not module.verify_integrity():
+        print("Module integrity check failed")
+        return "Module integrity check failed", 400
+    
+    print(f"Rendering module with data: {json.dumps(module.manifest, indent=2)}")
+    return render_template('module.html', 
+                         module=module.manifest,
+                         content_path=module.content_path)
+
+@app.route('/progress', methods=['GET', 'POST'])
+def handle_progress():
+    if request.method == 'POST':
+        progress = request.json
+        save_progress(progress)
+        return jsonify({'status': 'success'})
+    
+    return jsonify(load_progress())
+
+def main():
+    # Ensure we're running from the USB drive
+    if not os.path.exists('templates'):
+        print("Error: Must run from the CyberCrate USB drive")
+        sys.exit(1)
+    
+    # Start the web server
+    app.run(host='127.0.0.1', port=5000, debug=True)
+
+if __name__ == '__main__':
+    main()

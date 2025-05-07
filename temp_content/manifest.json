@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "hashes": {
+    "tasks.yaml": "b859a39af0dff279bfb5ab52b281d73e31b924c95bd821d5cb7b7f9d7e1f3811",
+    "tools/nmap_guide.txt": "472762ffdf067d88bc5bc7649a07d857245f671d2871471653c851733a0aa90d"
+  },
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Network Discovery",
+      "description": "Use nmap to discover active hosts on the network",
+      "resources": [
+        "tools/nmap_guide.txt",
+        "scripts/scan_network.sh"
+      ],
+      "expected_output": "List of active hosts"
+    },
+    {
+      "id": "task2",
+      "title": "Port Scanning",
+      "description": "Perform a detailed port scan on discovered hosts",
+      "resources": [
+        "tools/port_scan_guide.txt"
+      ],
+      "expected_output": "List of open ports and services"
+    },
+    {
+      "id": "task3",
+      "title": "Service Enumeration",
+      "description": "Identify running services and their versions",
+      "resources": [
+        "tools/service_enum_guide.txt"
+      ],
+      "expected_output": "Detailed service information"
+    }
+  ],
+  "name": "Basic Network Scanning"
+}

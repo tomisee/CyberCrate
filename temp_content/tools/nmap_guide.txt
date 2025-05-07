@@ -1,0 +1,23 @@
+Basic Network Scanning with Nmap
+=============================
+
+1. Basic Host Discovery
+   - nmap -sn 192.168.1.0/24
+   - This will scan the network and show active hosts
+
+2. Port Scanning
+   - nmap -p- 192.168.1.100
+   - Scans all 65535 ports on the target
+
+3. Service Detection
+   - nmap -sV 192.168.1.100
+   - Identifies service versions
+
+4. Operating System Detection
+   - nmap -O 192.168.1.100
+   - Attempts to identify the OS
+
+Remember to always:
+- Get proper authorization before scanning
+- Be careful with aggressive scans
+- Document your findings 
