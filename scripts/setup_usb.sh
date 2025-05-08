@@ -19,6 +19,7 @@ mkdir -p "$USB_PATH/cybercrate/templates"
 mkdir -p "$USB_PATH/cybercrate/modules/crates"
 mkdir -p "$USB_PATH/cybercrate/data/progress"
 mkdir -p "$USB_PATH/cybercrate/data/backups"
+mkdir -p "$USB_PATH/cybercrate/cheatsheets"
 
 # Copy core application files
 cp "$PROJECT_ROOT/src/core/main.py" "$USB_PATH/cybercrate/src/core/"
@@ -47,6 +48,11 @@ cp "$PROJECT_ROOT/requirements.txt" "$USB_PATH/cybercrate/"
 cat > "$USB_PATH/cybercrate/data/progress/progress.yaml" << EOF
 modules: {}
 EOF
+
+# Copy cheatsheets
+if [ -d "$PROJECT_ROOT/cheatsheets" ]; then
+    cp -r "$PROJECT_ROOT/cheatsheets"/* "$USB_PATH/cybercrate/cheatsheets/"
+fi
 
 # Create virtual environment on USB
 cd "$USB_PATH/cybercrate"

@@ -5,7 +5,7 @@ import json
 import zipfile
 import hashlib
 from pathlib import Path
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_from_directory, abort
 import yaml
 
 # Add the project root to the Python path
@@ -177,6 +177,25 @@ def handle_progress():
     progress = load_progress()
     print(f"Returning progress: {json.dumps(progress, indent=2)}")
     return jsonify(progress)
+
+CHEATSHEETS_DIR = project_root / 'cheatsheets'
+
+@app.route('/cheatsheets')
+def cheatsheets_list():
+    cheatsheets = []
+    if CHEATSHEETS_DIR.exists():
+        for f in CHEATSHEETS_DIR.glob('*.md'):
+            cheatsheets.append(f.stem)
+    return render_template('cheatsheets.html', cheatsheets=cheatsheets)
+
+@app.route('/cheatsheet/<name>')
+def cheatsheet_view(name):
+    cheatsheet_file = CHEATSHEETS_DIR / f'{name}.md'
+    if not cheatsheet_file.exists():
+        abort(404)
+    with open(cheatsheet_file, 'r') as f:
+        content = f.read()
+    return render_template('cheatsheet_view.html', name=name, content=content)
 
 #This is the main function that runs the web server
 def main():
