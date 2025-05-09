@@ -332,3 +332,56 @@
 2025-05-09 09:23:14,653 - INFO - 127.0.0.1 - - [09/May/2025 09:23:14] "GET /progress HTTP/1.1" 200 -
 2025-05-09 09:23:44,659 - INFO - 127.0.0.1 - - [09/May/2025 09:23:44] "GET /progress HTTP/1.1" 200 -
 2025-05-09 09:24:14,658 - INFO - 127.0.0.1 - - [09/May/2025 09:24:14] "GET /progress HTTP/1.1" 200 -
+2025-05-09 11:05:33,580 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-09 11:05:33,580 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 11:05:33,581 - INFO -  * Restarting with stat
+2025-05-09 11:05:33,696 - WARNING -  * Debugger is active!
+2025-05-09 11:05:33,703 - INFO -  * Debugger PIN: 142-055-502
+2025-05-09 11:05:42,601 - INFO - 127.0.0.1 - - [09/May/2025 11:05:42] "GET / HTTP/1.1" 200 -
+2025-05-09 11:05:42,654 - INFO - 127.0.0.1 - - [09/May/2025 11:05:42] "GET /progress HTTP/1.1" 200 -
+2025-05-09 11:05:54,826 - INFO - 127.0.0.1 - - [09/May/2025 11:05:54] "GET /tool/nmap HTTP/1.1" 200 -
+2025-05-09 11:05:54,948 - INFO - 127.0.0.1 - - [09/May/2025 11:05:54] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-09 11:06:07,932 - INFO - 127.0.0.1 - - [09/May/2025 11:06:07] "POST /tool/nmap/scan HTTP/1.1" 200 -
+2025-05-09 11:06:07,940 - INFO - 127.0.0.1 - - [09/May/2025 11:06:07] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-09 11:06:13,077 - INFO - 127.0.0.1 - - [09/May/2025 11:06:13] "GET /tools HTTP/1.1" 200 -
+2025-05-09 11:06:14,360 - INFO - 127.0.0.1 - - [09/May/2025 11:06:14] "GET /tool/h8mail HTTP/1.1" 200 -
+2025-05-09 11:06:14,453 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-09 11:06:14,454 - INFO - 127.0.0.1 - - [09/May/2025 11:06:14] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-09 11:06:23,208 - INFO - Installing h8mail...
+2025-05-09 11:06:23,608 - INFO - Environment setup completed successfully
+2025-05-09 11:06:24,332 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-09 11:06:24,333 - INFO - 127.0.0.1 - - [09/May/2025 11:06:24] "POST /tool/h8mail/scan HTTP/1.1" 200 -
+2025-05-09 11:06:24,343 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-09 11:06:24,344 - INFO - 127.0.0.1 - - [09/May/2025 11:06:24] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-09 11:06:59,915 - INFO - 127.0.0.1 - - [09/May/2025 11:06:59] "GET / HTTP/1.1" 200 -
+2025-05-09 11:06:59,974 - INFO - 127.0.0.1 - - [09/May/2025 11:06:59] "GET /progress HTTP/1.1" 200 -
+2025-05-09 11:07:01,300 - INFO - 127.0.0.1 - - [09/May/2025 11:07:01] "GET /module/Basic_Network_Scanning HTTP/1.1" 200 -
+2025-05-09 11:07:03,362 - INFO - 127.0.0.1 - - [09/May/2025 11:07:03] "GET /module_resource/Basic_Network_Scanning/content/tools/nmap_guide.txt HTTP/1.1" 200 -
+2025-05-09 11:07:06,143 - INFO - 127.0.0.1 - - [09/May/2025 11:07:06] "POST /progress HTTP/1.1" 200 -
+2025-05-09 11:07:08,212 - INFO - 127.0.0.1 - - [09/May/2025 11:07:08] "POST /progress HTTP/1.1" 200 -
+2025-05-09 11:07:11,167 - INFO - 127.0.0.1 - - [09/May/2025 11:07:11] "POST /progress HTTP/1.1" 200 -
+2025-05-09 11:07:13,148 - INFO - 127.0.0.1 - - [09/May/2025 11:07:13] "GET / HTTP/1.1" 200 -
+2025-05-09 11:07:13,189 - INFO - 127.0.0.1 - - [09/May/2025 11:07:13] "GET /progress HTTP/1.1" 200 -
+2025-05-09 11:07:18,128 - INFO - 127.0.0.1 - - [09/May/2025 11:07:18] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-09 11:07:19,843 - INFO - 127.0.0.1 - - [09/May/2025 11:07:19] "GET / HTTP/1.1" 200 -
+2025-05-09 11:07:19,882 - INFO - 127.0.0.1 - - [09/May/2025 11:07:19] "GET /progress HTTP/1.1" 200 -
+2025-05-09 11:07:21,786 - INFO - 127.0.0.1 - - [09/May/2025 11:07:21] "GET /module/H8mail_Basics HTTP/1.1" 200 -
+2025-05-09 11:07:28,300 - INFO - 127.0.0.1 - - [09/May/2025 11:07:28] "GET /module_resource/H8mail_Basics/content/tools/h8mail_guide.txt HTTP/1.1" 200 -
+2025-05-09 12:29:12,445 - INFO - 127.0.0.1 - - [09/May/2025 12:29:12] "GET / HTTP/1.1" 200 -
+2025-05-09 12:29:12,519 - INFO - 127.0.0.1 - - [09/May/2025 12:29:12] "GET /progress HTTP/1.1" 200 -
+2025-05-09 12:29:15,963 - INFO - 127.0.0.1 - - [09/May/2025 12:29:15] "GET /tool/h8mail HTTP/1.1" 200 -
+2025-05-09 12:29:16,070 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-09 12:29:16,070 - INFO - 127.0.0.1 - - [09/May/2025 12:29:16] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-09 12:29:30,845 - INFO - Installing h8mail...
+2025-05-09 12:29:31,278 - INFO - Environment setup completed successfully
+2025-05-09 12:29:32,035 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-09 12:29:32,036 - INFO - 127.0.0.1 - - [09/May/2025 12:29:32] "POST /tool/h8mail/scan HTTP/1.1" 200 -
+2025-05-09 12:29:32,045 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-09 12:29:32,045 - INFO - 127.0.0.1 - - [09/May/2025 12:29:32] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-09 12:29:52,242 - INFO - Installing h8mail...
+2025-05-09 12:29:52,576 - INFO - Environment setup completed successfully
+2025-05-09 12:29:53,121 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-09 12:29:53,121 - INFO - 127.0.0.1 - - [09/May/2025 12:29:53] "POST /tool/h8mail/scan HTTP/1.1" 200 -
+2025-05-09 12:29:53,131 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-09 12:29:53,131 - INFO - 127.0.0.1 - - [09/May/2025 12:29:53] "GET /tool/h8mail/history HTTP/1.1" 200 -

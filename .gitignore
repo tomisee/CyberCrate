@@ -13,7 +13,8 @@ data/backups/*
 !data/progress/.gitkeep
 !data/backups/.gitkeep
 data/temp_content/
-.log
+h8mail.log
+scan_history.sqlite
 
 # IDE
 .vscode/
@@ -24,3 +25,5 @@ data/temp_content/
 # OS
 .DS_Store
 Thumbs.db
+tools/portable/h8mail/h8mail.log
+tools/portable/nmap/config/scan_history.sqlite
