@@ -144,11 +144,18 @@
                     <h3>Resources:</h3>
                     <ul>
                         {% for resource in task.resources %}
-                        <li>{{ resource }}</li>
+                        <li>
+                            <a href="/module_resource/{{ module.name.replace(' ', '_') }}/content/{{ resource }}" target="_blank">
+                                {{ resource.split('/')[-1] }}
+                            </a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
                 {% endif %}
+                <div class="expected-output">
+                    <strong>Expected Output:</strong> {{ task.expected_output }}
+                </div>
                 <button class="button" onclick="toggleTaskStatus('{{ task.id }}')" data-task-id="{{ task.id }}">
                     {% if task.status == 'completed' %}
                         Mark as Pending

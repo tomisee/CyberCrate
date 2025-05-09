@@ -1,0 +1,45 @@
+# Port Scanning with Nmap
+
+## Overview
+Port scanning is a fundamental technique in network security assessments. Nmap is a powerful tool for discovering open ports and services on a target host.
+
+## Basic Port Scan
+To scan the most common 1,000 ports on a target:
+
+```bash
+nmap <target>
+```
+
+## Scan Specific Ports
+To scan specific ports (e.g., 22, 80, 443):
+
+```bash
+nmap -p 22,80,443 <target>
+```
+
+## Scan All Ports
+To scan all 65,535 TCP ports:
+
+```bash
+nmap -p- <target>
+```
+
+## Service Version Detection
+To detect service versions on open ports:
+
+```bash
+nmap -sV <target>
+```
+
+## Output Formats
+- Normal: Default output
+- Grepable: `-oG <file>`
+- XML: `-oX <file>`
+
+## Best Practices
+- Scan during authorized windows
+- Document your findings
+- Use with permission only
+
+## Exercise
+Try scanning a test host and identify which ports are open and what services are running. 

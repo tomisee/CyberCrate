@@ -1,0 +1,43 @@
+# Service Enumeration with Nmap
+
+## Overview
+Service enumeration is the process of identifying running services and their versions on open ports. This helps in vulnerability assessment and network mapping.
+
+## Service Version Detection
+To detect service versions on open ports:
+
+```bash
+nmap -sV <target>
+```
+
+## Script Scanning
+Nmap includes a powerful scripting engine (NSE) for advanced enumeration:
+
+```bash
+nmap --script=default,vuln <target>
+```
+
+- `default`: Runs a set of default scripts
+- `vuln`: Runs vulnerability detection scripts
+
+## OS Detection
+To attempt to determine the operating system:
+
+```bash
+nmap -O <target>
+```
+
+## Output Example
+```
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+```
+
+## Best Practices
+- Use version detection to identify potential vulnerabilities
+- Combine with script scanning for deeper insights
+- Document all findings
+
+## Exercise
+Run a service version scan and identify the software and versions running on your test host. 

@@ -5,7 +5,7 @@ import json
 import zipfile
 import hashlib
 from pathlib import Path
-from flask import Flask, render_template, jsonify, request, send_from_directory, abort
+from flask import Flask, render_template, jsonify, request, send_from_directory, abort, send_file
 import yaml
 from tools.portable.h8mail.wrapper import H8mailWrapper
 from tools.portable.nmap.wrapper import NmapWrapper
@@ -295,6 +295,27 @@ def nmap_history():
         return jsonify(history)
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400
+
+@app.route('/module_resource/<module_name>/<path:resource_path>')
+def serve_module_resource(module_name, resource_path):
+    # Find the crate whose manifest name matches module_name
+    crates_dir = project_root / 'modules' / 'crates'
+    for crate_file in crates_dir.glob('*.crate'):
+        with zipfile.ZipFile(crate_file, 'r') as crate:
+            manifest_data = crate.read('manifest.json')
+            manifest = json.loads(manifest_data)
+            display_name = manifest.get('name', crate_file.stem)
+            if display_name.replace(' ', '_') == module_name:
+                # Extract content to temp dir if not already
+                temp_dir = project_root / 'data' / 'temp_content' / module_name
+                temp_dir.mkdir(parents=True, exist_ok=True)
+                crate.extractall(temp_dir)
+                file_path = temp_dir / resource_path
+                if file_path.exists():
+                    return send_file(file_path)
+                else:
+                    return f"Resource not found: {resource_path}", 404
+    return "Module not found", 404
 
 #This is the main function that runs the web server
 def main():
