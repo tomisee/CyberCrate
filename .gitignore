@@ -13,6 +13,7 @@ data/backups/*
 !data/progress/.gitkeep
 !data/backups/.gitkeep
 data/temp_content/
+.log
 
 # IDE
 .vscode/

@@ -20,6 +20,8 @@ mkdir -p "$USB_PATH/cybercrate/modules/crates"
 mkdir -p "$USB_PATH/cybercrate/data/progress"
 mkdir -p "$USB_PATH/cybercrate/data/backups"
 mkdir -p "$USB_PATH/cybercrate/cheatsheets"
+mkdir -p "$USB_PATH/cybercrate/tools/portable/nmap"
+mkdir -p "$USB_PATH/cybercrate/tools/portable/h8mail"
 
 # Copy core application files
 cp "$PROJECT_ROOT/src/core/main.py" "$USB_PATH/cybercrate/src/core/"
@@ -33,13 +35,8 @@ fi
 # Copy templates
 cp -r "$PROJECT_ROOT/templates"/* "$USB_PATH/cybercrate/templates/"
 
-# Copy module crates (skip AppleDouble files)
-for crate in "$PROJECT_ROOT/modules/crates/"*.crate; do
-    basename=$(basename "$crate")
-    if [[ "$basename" != ._* ]]; then
-        cp "$crate" "$USB_PATH/cybercrate/modules/crates/"
-    fi
-done
+# Copy all module crates and their content
+cp -r "$PROJECT_ROOT/modules/crates"/* "$USB_PATH/cybercrate/modules/crates/"
 
 # Copy requirements.txt
 cp "$PROJECT_ROOT/requirements.txt" "$USB_PATH/cybercrate/"
@@ -54,17 +51,23 @@ if [ -d "$PROJECT_ROOT/cheatsheets" ]; then
     cp -r "$PROJECT_ROOT/cheatsheets"/* "$USB_PATH/cybercrate/cheatsheets/"
 fi
 
+# Copy all tools, including nmap and h8mail, with their LICENSE and README
+cp -r "$PROJECT_ROOT/tools/portable/nmap"/* "$USB_PATH/cybercrate/tools/portable/nmap/"
+cp -r "$PROJECT_ROOT/tools/portable/h8mail"/* "$USB_PATH/cybercrate/tools/portable/h8mail/"
+
+# Remove any log files and scan history databases from the tools on the USB
+find "$USB_PATH/cybercrate/tools/portable/" -type f \( -name "*.log" -o -name "*.sqlite" \) -delete
+
 # Create virtual environment on USB
 cd "$USB_PATH/cybercrate"
-# Remove any existing venv for a clean install
-if [ -d venv ]; then
-    rm -rf venv
+# Create venv if it doesn't exist
+if [ ! -d venv ]; then
+    python3 -m venv venv
 fi
-python3 -m venv venv
 source venv/bin/activate
 # Upgrade pip to latest version
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
 # Clear pip cache
 pip cache purge
 
@@ -73,6 +76,7 @@ cat > "$USB_PATH/cybercrate/start_cybercrate.sh" << EOF
 #!/bin/bash
 cd "$(dirname "$0")"
 source venv/bin/activate
+export PYTHONPATH="$PYTHONPATH:$(pwd)"
 python3 src/core/main.py
 EOF
 

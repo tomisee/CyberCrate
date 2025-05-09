@@ -328,3 +328,7 @@
 2025-05-09 09:18:32,518 - INFO - 127.0.0.1 - - [09/May/2025 09:18:32] "[33mGET /module_resource/Basic_Network_Scanning/content/scripts/scan_network.sh HTTP/1.1[0m" 404 -
 2025-05-09 09:18:35,315 - INFO - 127.0.0.1 - - [09/May/2025 09:18:35] "GET /module_resource/Basic_Network_Scanning/content/tools/port_scan_guide.txt HTTP/1.1" 200 -
 2025-05-09 09:18:37,702 - INFO - 127.0.0.1 - - [09/May/2025 09:18:37] "GET /module_resource/Basic_Network_Scanning/content/tools/service_enum_guide.txt HTTP/1.1" 200 -
+2025-05-09 09:23:14,567 - INFO - 127.0.0.1 - - [09/May/2025 09:23:14] "GET / HTTP/1.1" 200 -
+2025-05-09 09:23:14,653 - INFO - 127.0.0.1 - - [09/May/2025 09:23:14] "GET /progress HTTP/1.1" 200 -
+2025-05-09 09:23:44,659 - INFO - 127.0.0.1 - - [09/May/2025 09:23:44] "GET /progress HTTP/1.1" 200 -
+2025-05-09 09:24:14,658 - INFO - 127.0.0.1 - - [09/May/2025 09:24:14] "GET /progress HTTP/1.1" 200 -
