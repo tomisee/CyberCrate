@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nmap Tool - CyberCrate</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .scan-form {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .output {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin-top: 20px;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+        .history-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .history-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .history-table tr:hover {
+            background: #f8f9fa;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        .input-field {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+        }
+        .loading.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="tool-container">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Nmap Network Scanner</h1>
+            <a href="/tools" class="text-blue-500 hover:text-blue-700">← Back to Tools</a>
+        </div>
+        <div class="scan-form">
+            <h2 class="text-xl font-semibold mb-4">Run a Scan</h2>
+            <input type="text" id="target" class="input-field" placeholder="Enter target (e.g. scanme.nmap.org or 192.168.1.1)">
+            <input type="text" id="options" class="input-field" placeholder="Nmap options (e.g. -sV -p 80,443)">
+            <div class="flex space-x-4">
+                <button onclick="runScan()" class="btn btn-primary">Run Scan</button>
+                <button onclick="clearResults()" class="btn btn-primary">Clear</button>
+            </div>
+            <div class="loading" id="loading">
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                    <span>Running scan...</span>
+                </div>
+            </div>
+        </div>
+        <div class="output" id="output"></div>
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold mb-4">Scan History</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Target</th>
+                        <th>Date</th>
+                        <th>Options</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function loadHistory() {
+            try {
+                const response = await fetch('/tool/nmap/history');
+                const history = await response.json();
+                const tbody = document.querySelector('#historyTableBody');
+                tbody.innerHTML = '';
+                history.forEach(scan => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${scan.target}</td>
+                        <td>${new Date(scan.scan_date).toLocaleString()}</td>
+                        <td>${(scan.options || []).join(' ')}</td>
+                        <td>
+                            <span class="px-2 py-1 rounded ${scan.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${scan.status}
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="viewResults('${scan.target.replace(/'/g, "\\'")}')" class="btn btn-primary">View Results</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Failed to load history:', error);
+            }
+        }
+        async function runScan() {
+            const target = document.getElementById('target').value;
+            const options = document.getElementById('options').value.split(' ').filter(Boolean);
+            if (!target) {
+                alert('Please enter a target');
+                return;
+            }
+            try {
+                document.getElementById('loading').classList.add('active');
+                const response = await fetch('/tool/nmap/scan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        target: target,
+                        options: options
+                    })
+                });
+                const result = await response.json();
+                document.getElementById('output').textContent = result.success ? result.stdout : result.error;
+                loadHistory();
+            } catch (error) {
+                document.getElementById('output').textContent = 'Error: ' + error.message;
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+        function clearResults() {
+            document.getElementById('output').textContent = '';
+            document.getElementById('target').value = '';
+            document.getElementById('options').value = '';
+        }
+        async function viewResults(target) {
+            // For now, just show the last scan for this target
+            const response = await fetch('/tool/nmap/history');
+            const history = await response.json();
+            const scan = history.find(s => s.target === target);
+            if (scan) {
+                document.getElementById('output').textContent = scan.results.stdout;
+            } else {
+                document.getElementById('output').textContent = 'No results found for this target.';
+            }
+        }
+        loadHistory();
+    </script>
+</body>
+</html> 

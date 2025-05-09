@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>H8mail - CyberCrate</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .scan-form {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .output {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin-top: 20px;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+        .history-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .history-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .history-table tr:hover {
+            background: #f8f9fa;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        .input-field {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+        }
+        .loading.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="tool-container">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">H8mail OSINT Tool</h1>
+            <div class="flex space-x-4">
+                <button onclick="showConfig()" class="btn btn-primary">Configuration</button>
+                <button onclick="showHelp()" class="btn btn-primary">Help</button>
+            </div>
+        </div>
+        
+        <div class="scan-form">
+            <h2 class="text-xl font-semibold mb-4">Email Reconnaissance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <input type="text" id="target" class="input-field" placeholder="Enter email address or domain">
+                    <div class="flex space-x-4">
+                        <button onclick="runScan()" class="btn btn-primary">Run Scan</button>
+                        <button onclick="clearResults()" class="btn btn-primary">Clear</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex flex-col space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="breach" class="mr-2">
+                            Check Breach Databases
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="leak" class="mr-2">
+                            Check Leak Databases
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="verbose" class="mr-2">
+                            Verbose Output
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="loading" id="loading">
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                    <span>Running scan...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="output" id="output"></div>
+        
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold mb-4">Scan History</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Target</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Load scan history
+        async function loadHistory() {
+            try {
+                const response = await fetch('/tool/h8mail/history');
+                const history = await response.json();
+                
+                const tbody = document.querySelector('#historyTableBody');
+                tbody.innerHTML = '';
+                
+                history.forEach(scan => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${scan.target}</td>
+                        <td>${new Date(scan.scan_date).toLocaleString()}</td>
+                        <td>${scan.scan_type}</td>
+                        <td>
+                            <span class="px-2 py-1 rounded ${scan.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${scan.status}
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="viewResults('${scan.target}')" class="btn btn-primary">View Results</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Failed to load history:', error);
+            }
+        }
+
+        // Run a new scan
+        async function runScan() {
+            const target = document.getElementById('target').value;
+            if (!target) {
+                alert('Please enter a target email or domain');
+                return;
+            }
+
+            const options = {
+                breach: document.getElementById('breach').checked,
+                leak: document.getElementById('leak').checked,
+                verbose: document.getElementById('verbose').checked
+            };
+
+            try {
+                document.getElementById('loading').classList.add('active');
+                const response = await fetch('/tool/h8mail/scan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        target: target,
+                        options: options
+                    })
+                });
+                
+                const result = await response.json();
+                document.getElementById('output').textContent = 
+                    result.success ? result.stdout : result.error;
+                
+                // Reload history
+                loadHistory();
+            } catch (error) {
+                document.getElementById('output').textContent = 
+                    'Error: ' + error.message;
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        // View previous scan results
+        async function viewResults(target) {
+            try {
+                const response = await fetch(`/tool/h8mail/results/${encodeURIComponent(target)}`);
+                const result = await response.json();
+                document.getElementById('output').textContent = 
+                    JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('output').textContent = 
+                    'Error: ' + error.message;
+            }
+        }
+
+        // Clear results
+        function clearResults() {
+            document.getElementById('output').textContent = '';
+            document.getElementById('target').value = '';
+        }
+
+        // Show configuration modal
+        function showConfig() {
+            // Implementation for configuration modal
+            alert('Configuration modal to be implemented');
+        }
+
+        // Show help modal
+        function showHelp() {
+            // Implementation for help modal
+            alert('Help modal to be implemented');
+        }
+
+        // Load history on page load
+        loadHistory();
+    </script>
+</body>
+</html> 

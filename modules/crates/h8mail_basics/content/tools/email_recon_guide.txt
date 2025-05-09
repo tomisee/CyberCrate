@@ -1,0 +1,64 @@
+# Email Address Reconnaissance with H8mail
+
+## Overview
+This guide will teach you how to perform email address reconnaissance using h8mail. You'll learn how to gather information about email addresses, check for data breaches, and find associated accounts.
+
+## Basic Email Scan
+To perform a basic email scan:
+
+```bash
+h8mail -t target@email.com
+```
+
+This will:
+1. Check for basic email information
+2. Look for associated accounts
+3. Search for data breaches
+
+## Advanced Email Scanning
+For more detailed results, use these options:
+
+```bash
+# Enable breach checking
+h8mail -t target@email.com -bc
+
+# Enable leak checking
+h8mail -t target@email.com -l
+
+# Save results to a file
+h8mail -t target@email.com -o results.txt
+
+# Get JSON output
+h8mail -t target@email.com -j
+```
+
+## Understanding Results
+The scan results will show:
+1. Email address validity
+2. Associated accounts
+3. Data breaches (if found)
+4. Leaked information (if found)
+5. Associated domains
+
+## Best Practices
+1. Start with basic scans
+2. Use API keys for better results
+3. Be mindful of rate limits
+4. Document your findings
+5. Respect privacy and legal boundaries
+
+## Common Use Cases
+1. Security assessments
+2. Threat intelligence
+3. Incident response
+4. OSINT investigations
+
+## Tips for Better Results
+1. Use multiple API keys
+2. Try different scan options
+3. Check results carefully
+4. Cross-reference findings
+5. Keep records of your scans
+
+## Exercise
+Try scanning your own email address (with permission) to understand what information is available. Then try scanning a test email address to practice the techniques learned. 

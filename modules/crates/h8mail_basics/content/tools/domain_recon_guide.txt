@@ -1,0 +1,67 @@
+# Domain Reconnaissance with H8mail
+
+## Overview
+This guide will teach you how to perform domain reconnaissance using h8mail. You'll learn how to gather information about domains, find associated email addresses, and discover potential security issues.
+
+## Basic Domain Scan
+To perform a basic domain scan:
+
+```bash
+h8mail -t example.com
+```
+
+This will:
+1. Check for domain information
+2. Look for associated email addresses
+3. Search for data breaches
+4. Find related domains
+
+## Advanced Domain Scanning
+For more detailed results, use these options:
+
+```bash
+# Enable breach checking
+h8mail -t example.com -bc
+
+# Enable leak checking
+h8mail -t example.com -l
+
+# Save results to a file
+h8mail -t example.com -o results.txt
+
+# Get JSON output
+h8mail -t example.com -j
+```
+
+## Understanding Results
+The scan results will show:
+1. Domain information
+2. Associated email addresses
+3. Data breaches (if found)
+4. Leaked information (if found)
+5. Related domains
+6. Security issues
+
+## Best Practices
+1. Start with basic scans
+2. Use API keys for better results
+3. Be mindful of rate limits
+4. Document your findings
+5. Respect privacy and legal boundaries
+
+## Common Use Cases
+1. Security assessments
+2. Threat intelligence
+3. Incident response
+4. OSINT investigations
+5. Domain monitoring
+
+## Tips for Better Results
+1. Use multiple API keys
+2. Try different scan options
+3. Check results carefully
+4. Cross-reference findings
+5. Keep records of your scans
+
+## Exercise
+Try scanning a test domain to practice the techniques learned. Document your findings and analyze the results to understand what information is available through domain reconnaissance. 

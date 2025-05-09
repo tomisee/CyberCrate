@@ -1,0 +1,23 @@
+{
+    "api_keys": {
+        "h8mail": "",
+        "hunter": "",
+        "breachdirectory": "",
+        "leakcheck": ""
+    },
+    "scan_options": {
+        "timeout": 30,
+        "max_retries": 3,
+        "use_proxy": false,
+        "proxy_url": ""
+    },
+    "database": {
+        "max_history": 1000,
+        "auto_cleanup": true
+    },
+    "output": {
+        "default_format": "json",
+        "save_results": true,
+        "output_directory": "results"
+    }
+} 

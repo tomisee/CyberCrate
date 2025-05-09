@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CyberCrate Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .tool-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="tool-container">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Available Tools</h1>
+            <a href="/" class="text-blue-500 hover:text-blue-700">← Back to Home</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- H8mail Tool Card -->
+            <div class="tool-card">
+                <h2 class="text-xl font-semibold mb-2">H8mail OSINT Tool</h2>
+                <p class="text-gray-600 mb-4">
+                    Email reconnaissance and OSINT tool for gathering information about email addresses and domains.
+                </p>
+                <ul class="text-sm text-gray-500 mb-4">
+                    <li>• Email address reconnaissance</li>
+                    <li>• Domain reconnaissance</li>
+                    <li>• Breach database checking</li>
+                    <li>• Leak database checking</li>
+                </ul>
+                <a href="/tool/h8mail" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                    Launch Tool
+                </a>
+            </div>
+            <div class="tool-card">
+                <h2 class="text-xl font-semibold mb-2">Nmap Network Scanner</h2>
+                <p class="text-gray-600 mb-4">
+                    Port scanning and network discovery tool for security assessments and troubleshooting.
+                </p>
+                <ul class="text-sm text-gray-500 mb-4">
+                    <li>• Port scanning</li>
+                    <li>• Service/version detection</li>
+                    <li>• Network discovery</li>
+                    <li>• Security auditing</li>
+                </ul>
+                <a href="/tool/nmap" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                    Launch Tool
+                </a>
+            </div>
+
+            <!-- Add more tool cards here as they become available -->
+        </div>
+    </div>
+</body>
+</html> 

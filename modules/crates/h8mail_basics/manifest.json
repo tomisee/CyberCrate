@@ -1,0 +1,39 @@
+{
+    "version": "1.0",
+    "name": "H8mail Basics",
+    "hashes": {
+        "content/tasks.yaml": "placeholder_hash",
+        "content/tools/h8mail_guide.txt": "placeholder_hash",
+        "content/tools/email_recon_guide.txt": "placeholder_hash",
+        "content/tools/domain_recon_guide.txt": "placeholder_hash"
+    },
+    "tasks": [
+        {
+            "id": "task1",
+            "title": "Setting Up H8mail",
+            "description": "Install and configure h8mail with your API keys",
+            "resources": [
+                "tools/h8mail_guide.txt"
+            ],
+            "expected_output": "Successfully installed h8mail and configured API keys"
+        },
+        {
+            "id": "task2",
+            "title": "Email Address Reconnaissance",
+            "description": "Learn how to perform email address reconnaissance using h8mail",
+            "resources": [
+                "tools/email_recon_guide.txt"
+            ],
+            "expected_output": "Successfully gathered information about an email address"
+        },
+        {
+            "id": "task3",
+            "title": "Domain Reconnaissance",
+            "description": "Learn how to perform domain reconnaissance using h8mail",
+            "resources": [
+                "tools/domain_recon_guide.txt"
+            ],
+            "expected_output": "Successfully gathered information about a domain"
+        }
+    ]
+} 

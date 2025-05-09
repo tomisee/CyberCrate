@@ -7,6 +7,8 @@ import hashlib
 from pathlib import Path
 from flask import Flask, render_template, jsonify, request, send_from_directory, abort
 import yaml
+from tools.portable.h8mail.wrapper import H8mailWrapper
+from tools.portable.nmap.wrapper import NmapWrapper
 
 # Add the project root to the Python path
 project_root = Path(__file__).parent.parent.parent
@@ -16,6 +18,10 @@ sys.path.append(str(project_root))
 app = Flask(__name__, 
            template_folder=str(project_root / 'templates'),
            static_folder=str(project_root / 'static'))
+
+# Initialize h8mail wrapper
+h8mail_wrapper = H8mailWrapper()
+nmap_wrapper = NmapWrapper()
 
 #Key element, this creates a module box object that contains the manifest and content of a module
 #The manifest is the metadata of the module, and the content is the files of the module
@@ -196,6 +202,99 @@ def cheatsheet_view(name):
     with open(cheatsheet_file, 'r') as f:
         content = f.read()
     return render_template('cheatsheet_view.html', name=name, content=content)
+
+@app.route('/tools')
+def tools_list():
+    """List all available tools"""
+    return render_template('tools.html')
+
+@app.route('/tool/h8mail')
+def h8mail_interface():
+    """H8mail tool interface"""
+    return render_template('tool_h8mail.html')
+
+@app.route('/tool/h8mail/scan', methods=['POST'])
+def h8mail_scan():
+    try:
+        data = request.json
+        target = data.get('target')
+        options = data.get('options', {})
+
+        if not target:
+            return jsonify({
+                'success': False,
+                'error': 'Target is required'
+            }), 400
+
+        # Run the scan
+        result = h8mail_wrapper.run_scan(target, options=options)
+        
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
+
+@app.route('/tool/h8mail/history')
+def h8mail_history():
+    try:
+        history = h8mail_wrapper.get_scan_history()
+        return jsonify(history)
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
+
+@app.route('/tool/h8mail/results/<target>')
+def h8mail_results(target):
+    try:
+        # Get the most recent scan results for the target
+        history = h8mail_wrapper.get_scan_history()
+        target_results = next(
+            (scan for scan in history if scan['target'] == target),
+            None
+        )
+        
+        if not target_results:
+            return jsonify({
+                'success': False,
+                'error': 'No results found for this target'
+            }), 404
+            
+        return jsonify(target_results)
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
+
+@app.route('/tool/nmap')
+def nmap_interface():
+    """Nmap tool interface"""
+    return render_template('tool_nmap.html')
+
+@app.route('/tool/nmap/scan', methods=['POST'])
+def nmap_scan():
+    try:
+        data = request.json
+        target = data.get('target')
+        options = data.get('options', [])
+        if not target:
+            return jsonify({'success': False, 'error': 'Target is required'}), 400
+        result = nmap_wrapper.run_scan(target, options=options)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@app.route('/tool/nmap/history')
+def nmap_history():
+    try:
+        history = nmap_wrapper.get_scan_history()
+        return jsonify(history)
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
 
 #This is the main function that runs the web server
 def main():
