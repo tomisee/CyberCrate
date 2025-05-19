@@ -22,6 +22,7 @@ mkdir -p "$USB_PATH/cybercrate/data/backups"
 mkdir -p "$USB_PATH/cybercrate/cheatsheets"
 mkdir -p "$USB_PATH/cybercrate/tools/portable/nmap"
 mkdir -p "$USB_PATH/cybercrate/tools/portable/h8mail"
+mkdir -p "$USB_PATH/cybercrate/tools/portable/theharvester"
 
 # Copy core application files
 cp "$PROJECT_ROOT/src/core/main.py" "$USB_PATH/cybercrate/src/core/"
@@ -54,6 +55,8 @@ fi
 # Copy all tools, including nmap and h8mail, with their LICENSE and README
 cp -r "$PROJECT_ROOT/tools/portable/nmap"/* "$USB_PATH/cybercrate/tools/portable/nmap/"
 cp -r "$PROJECT_ROOT/tools/portable/h8mail"/* "$USB_PATH/cybercrate/tools/portable/h8mail/"
+# Copy theHarvester tool and wrapper
+cp -r "$PROJECT_ROOT/tools/portable/theharvester"/* "$USB_PATH/cybercrate/tools/portable/theharvester/"
 
 # Remove any log files and scan history databases from the tools on the USB
 find "$USB_PATH/cybercrate/tools/portable/" -type f \( -name "*.log" -o -name "*.sqlite" \) -delete
@@ -68,8 +71,14 @@ source venv/bin/activate
 # Upgrade pip to latest version
 pip install --upgrade pip
 pip install --upgrade -r requirements.txt
+# Install theHarvester from GitHub (not PyPI)
+pip install --upgrade git+https://github.com/laramies/theHarvester.git
 # Clear pip cache
 pip cache purge
+
+# Ensure theHarvester config directory exists and is writable
+sudo mkdir -p /usr/local/etc/theHarvester
+sudo chown -R $(whoami) /usr/local/etc/theHarvester
 
 # Create a launcher script
 cat > "$USB_PATH/cybercrate/start_cybercrate.sh" << EOF
