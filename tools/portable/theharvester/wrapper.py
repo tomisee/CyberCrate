@@ -30,24 +30,30 @@ class TheHarvesterWrapper:
     def setup_environment(self):
         """Set up the complete environment for theHarvester"""
         try:
+            print(f"Setting up environment in {self.venv_path}")
             # Create virtual environment
             if not self.venv_path.exists():
-                logging.info("Creating virtual environment...")
-                subprocess.run([sys.executable, '-m', 'venv', str(self.venv_path)], check=True)
+                print("Creating virtual environment...")
+                # Use the system Python to create venv
+                subprocess.run(['python3', '-m', 'venv', str(self.venv_path)], check=True)
 
-            # Install requirements
-            pip_path = self.venv_path / 'bin' / 'pip' if os.name != 'nt' else self.venv_path / 'Scripts' / 'pip'
-            
-            logging.info("Installing theHarvester...")
-            subprocess.run([str(pip_path), 'install', 'theHarvester'], check=True)
+            # Install requirements using the system pip
+            print("Installing theHarvester...")
+            # First uninstall any existing version
+            subprocess.run(['pip3', 'uninstall', '-y', 'theHarvester'], check=True)
+            # Install from GitHub
+            subprocess.run(['pip3', 'install', 'git+https://github.com/laramies/theHarvester.git'], check=True)
 
             # Initialize database if it doesn't exist
             self.initialize_database()
 
-            logging.info("Environment setup completed successfully")
+            print("Environment setup completed successfully")
             return True
         except Exception as e:
-            logging.error(f"Environment setup failed: {str(e)}")
+            print(f"Environment setup failed with error: {str(e)}")
+            print(f"Error type: {type(e)}")
+            import traceback
+            print(f"Traceback: {traceback.format_exc()}")
             return False
 
     def initialize_database(self):
@@ -80,35 +86,42 @@ class TheHarvesterWrapper:
     def run_scan(self, target, sources=None, options=None):
         """Run a scan with theHarvester"""
         try:
+            print(f"[DEBUG] Raw target: {repr(target)}")
+            print(f"[DEBUG] Raw sources: {repr(sources)}")
+            print(f"[DEBUG] Raw options: {repr(options)}")
             # Ensure environment is set up
             if not self.setup_environment():
                 raise Exception("Environment setup failed")
 
-            # Get the Python interpreter from the virtual environment
-            python_path = self.venv_path / 'bin' / 'python'
-            if os.name == 'nt':
-                python_path = self.venv_path / 'Scripts' / 'python'
-
-            # Construct the command
-            cmd = [str(python_path), '-m', 'theHarvester', '-d', target]
+            # Construct the command using system Python
+            cmd = ['theHarvester']
             
-            if sources:
-                cmd.extend(['-b', sources])
+            # Add required arguments
+            cmd.extend(['-d', str(target)])
             
+            # Add sources if specified
+            if sources and sources != 'all':
+                cmd.extend(['-b', str(sources)])
+            
+            # Add optional arguments
             if options:
                 if options.get('limit'):
                     cmd.extend(['-l', str(options['limit'])])
-                if options.get('output'):
-                    cmd.extend(['-o', options['output']])
                 if options.get('verbose'):
                     cmd.append('-v')
+                if options.get('output'):
+                    cmd.extend(['-o', str(options['output'])])
 
+            print(f"[DEBUG] Final command list: {cmd}")
+            print(f"Running command: {' '.join(cmd)}")
+            
             # Run the scan
             process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                text=True
+                text=True,
+                cwd=str(self.tool_dir)  # Set working directory to tool directory
             )
             stdout, stderr = process.communicate()
 
@@ -116,20 +129,31 @@ class TheHarvesterWrapper:
             stdout = self.strip_ansi_codes(stdout)
             stderr = self.strip_ansi_codes(stderr)
 
+            print(f"Scan completed with return code: {process.returncode}")
+            print(f"Output: {stdout[:200]}...")  # Print first 200 chars of output
+            if stderr:
+                print(f"Error output: {stderr}")
+
             # Store results in database
             self.store_scan_results(target, stdout, stderr, process.returncode, sources)
 
+            # Return both stdout and stderr in the response
             return {
                 'success': process.returncode == 0,
                 'stdout': stdout,
                 'stderr': stderr,
-                'return_code': process.returncode
+                'return_code': process.returncode,
+                'command': ' '.join(cmd)  # Include the command that was run
             }
         except Exception as e:
-            logging.error(f"Scan failed: {str(e)}")
+            print(f"Scan failed with error: {str(e)}")
+            print(f"Error type: {type(e)}")
+            import traceback
+            print(f"Traceback: {traceback.format_exc()}")
             return {
                 'success': False,
-                'error': str(e)
+                'error': str(e),
+                'traceback': traceback.format_exc()
             }
 
     def store_scan_results(self, target, stdout, stderr, return_code, sources):

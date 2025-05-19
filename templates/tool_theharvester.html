@@ -75,7 +75,7 @@
     <script>
         async function loadHistory() {
             try {
-                const response = await fetch('/tool/theharvester/history');
+                const response = await fetch('/tools/theharvester/history');
                 const history = await response.json();
                 const tbody = document.querySelector('#historyTableBody');
                 tbody.innerHTML = '';
@@ -113,7 +113,7 @@
             if (verbose) options.verbose = true;
             try {
                 document.getElementById('loading').classList.add('active');
-                const response = await fetch('/tool/theharvester/scan', {
+                const response = await fetch('/tools/theharvester/scan', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -123,7 +123,7 @@
                     })
                 });
                 const result = await response.json();
-                document.getElementById('output').textContent = result.success ? result.stdout : result.error;
+                document.getElementById('output').textContent = result.success ? result.results : result.error;
                 loadHistory();
             } catch (error) {
                 document.getElementById('output').textContent = 'Error: ' + error.message;

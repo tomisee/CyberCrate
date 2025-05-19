@@ -514,3 +514,382 @@
 2025-05-19 09:35:45,585 - INFO - 127.0.0.1 - - [19/May/2025 09:35:45] "GET /progress HTTP/1.1" 200 -
 2025-05-19 09:36:15,591 - INFO - 127.0.0.1 - - [19/May/2025 09:36:15] "GET /progress HTTP/1.1" 200 -
 2025-05-19 09:36:45,591 - INFO - 127.0.0.1 - - [19/May/2025 09:36:45] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:37:15,589 - INFO - 127.0.0.1 - - [19/May/2025 09:37:15] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:37:18,535 - INFO - 127.0.0.1 - - [19/May/2025 09:37:18] "GET /tool/nmap HTTP/1.1" 200 -
+2025-05-19 09:37:18,648 - INFO - 127.0.0.1 - - [19/May/2025 09:37:18] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 09:37:23,865 - INFO - 127.0.0.1 - - [19/May/2025 09:37:23] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:37:26,946 - INFO - 127.0.0.1 - - [19/May/2025 09:37:26] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:37:27,045 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:37:27,046 - INFO - 127.0.0.1 - - [19/May/2025 09:37:27] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:37:40,520 - INFO - 127.0.0.1 - - [19/May/2025 09:37:40] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:37:40,918 - INFO - 127.0.0.1 - - [19/May/2025 09:37:40] "GET / HTTP/1.1" 200 -
+2025-05-19 09:37:40,981 - INFO - 127.0.0.1 - - [19/May/2025 09:37:40] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:38:10,990 - INFO - 127.0.0.1 - - [19/May/2025 09:38:10] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:38:25,402 - INFO - 127.0.0.1 - - [19/May/2025 09:38:25] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:38:26,346 - INFO - 127.0.0.1 - - [19/May/2025 09:38:26] "GET /cheatsheet/nmap HTTP/1.1" 200 -
+2025-05-19 09:38:32,705 - INFO - 127.0.0.1 - - [19/May/2025 09:38:32] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:38:33,560 - INFO - 127.0.0.1 - - [19/May/2025 09:38:33] "GET / HTTP/1.1" 200 -
+2025-05-19 09:38:33,594 - INFO - 127.0.0.1 - - [19/May/2025 09:38:33] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:38:41,090 - INFO - 127.0.0.1 - - [19/May/2025 09:38:41] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:38:41,657 - INFO - 127.0.0.1 - - [19/May/2025 09:38:41] "GET /cheatsheet/nmap HTTP/1.1" 200 -
+2025-05-19 09:38:46,008 - INFO - 127.0.0.1 - - [19/May/2025 09:38:46] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:39:08,991 - INFO - 127.0.0.1 - - [19/May/2025 09:39:08] "GET / HTTP/1.1" 200 -
+2025-05-19 09:39:09,028 - INFO - 127.0.0.1 - - [19/May/2025 09:39:09] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:39:11,695 - INFO - 127.0.0.1 - - [19/May/2025 09:39:11] "GET /module/theharvester_basics HTTP/1.1" 200 -
+2025-05-19 09:39:12,922 - INFO - 127.0.0.1 - - [19/May/2025 09:39:12] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:39:13,889 - INFO - 127.0.0.1 - - [19/May/2025 09:39:13] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:39:14,963 - INFO - 127.0.0.1 - - [19/May/2025 09:39:14] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:39:15,424 - INFO - 127.0.0.1 - - [19/May/2025 09:39:15] "GET /module_resource/theharvester_basics/content/tools/email_discovery_guide.txt HTTP/1.1" 200 -
+2025-05-19 09:39:22,164 - INFO - 127.0.0.1 - - [19/May/2025 09:39:22] "GET / HTTP/1.1" 200 -
+2025-05-19 09:39:22,208 - INFO - 127.0.0.1 - - [19/May/2025 09:39:22] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:39:23,237 - INFO - 127.0.0.1 - - [19/May/2025 09:39:23] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:39:24,586 - INFO - 127.0.0.1 - - [19/May/2025 09:39:24] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:39:24,686 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:39:24,686 - INFO - 127.0.0.1 - - [19/May/2025 09:39:24] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:39:41,149 - INFO - Creating virtual environment...
+2025-05-19 09:39:42,817 - INFO - Installing theHarvester...
+2025-05-19 09:39:43,799 - INFO - Initializing database...
+2025-05-19 09:39:43,800 - ERROR - Environment setup failed: unable to open database file
+2025-05-19 09:39:43,800 - ERROR - Scan failed: Environment setup failed
+2025-05-19 09:39:43,800 - INFO - 127.0.0.1 - - [19/May/2025 09:39:43] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:39:43,808 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:39:43,808 - INFO - 127.0.0.1 - - [19/May/2025 09:39:43] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:40:39,200 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:40:39,200 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:40:39,202 - INFO -  * Restarting with stat
+2025-05-19 09:40:39,317 - WARNING -  * Debugger is active!
+2025-05-19 09:40:39,326 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:40:41,629 - INFO - 127.0.0.1 - - [19/May/2025 09:40:41] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:40:41,730 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:40:41,730 - INFO - 127.0.0.1 - - [19/May/2025 09:40:41] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:40:53,537 - INFO - Installing theHarvester...
+2025-05-19 09:40:53,895 - INFO - Initializing database...
+2025-05-19 09:40:53,895 - ERROR - Environment setup failed: unable to open database file
+2025-05-19 09:40:53,895 - ERROR - Scan failed: Environment setup failed
+2025-05-19 09:40:53,895 - INFO - 127.0.0.1 - - [19/May/2025 09:40:53] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:40:53,900 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:40:53,900 - INFO - 127.0.0.1 - - [19/May/2025 09:40:53] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:41:19,173 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:41:19,173 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:41:19,174 - INFO -  * Restarting with stat
+2025-05-19 09:41:19,289 - WARNING -  * Debugger is active!
+2025-05-19 09:41:19,295 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:41:20,504 - INFO - 127.0.0.1 - - [19/May/2025 09:41:20] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:41:20,614 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:41:20,614 - INFO - 127.0.0.1 - - [19/May/2025 09:41:20] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:41:59,056 - INFO - 127.0.0.1 - - [19/May/2025 09:41:59] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:42:01,594 - INFO - 127.0.0.1 - - [19/May/2025 09:42:01] "GET / HTTP/1.1" 200 -
+2025-05-19 09:42:01,621 - INFO - 127.0.0.1 - - [19/May/2025 09:42:01] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:42:03,141 - INFO - 127.0.0.1 - - [19/May/2025 09:42:03] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:42:04,886 - INFO - 127.0.0.1 - - [19/May/2025 09:42:04] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:42:04,983 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:42:04,983 - INFO - 127.0.0.1 - - [19/May/2025 09:42:04] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:42:11,245 - INFO - Installing theHarvester...
+2025-05-19 09:42:11,249 - ERROR - Environment setup failed: [Errno 2] No such file or directory: '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/venv/bin/pip'
+2025-05-19 09:42:11,250 - ERROR - Scan failed: Environment setup failed
+2025-05-19 09:42:11,250 - INFO - 127.0.0.1 - - [19/May/2025 09:42:11] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:42:11,257 - ERROR - Failed to retrieve scan history: unable to open database file
+2025-05-19 09:42:11,257 - INFO - 127.0.0.1 - - [19/May/2025 09:42:11] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:42:55,123 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:42:55,123 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:42:55,124 - INFO -  * Restarting with stat
+2025-05-19 09:42:55,239 - WARNING -  * Debugger is active!
+2025-05-19 09:42:55,246 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:42:56,902 - INFO - 127.0.0.1 - - [19/May/2025 09:42:56] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:42:57,020 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:42:57,021 - INFO - 127.0.0.1 - - [19/May/2025 09:42:57] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:43:03,943 - INFO - Installing theHarvester...
+2025-05-19 09:43:03,947 - ERROR - Environment setup failed: [Errno 2] No such file or directory: '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/venv/bin/pip'
+2025-05-19 09:43:03,947 - ERROR - Scan failed: Environment setup failed
+2025-05-19 09:43:03,948 - INFO - 127.0.0.1 - - [19/May/2025 09:43:03] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:43:03,955 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:43:03,956 - INFO - 127.0.0.1 - - [19/May/2025 09:43:03] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:43:32,412 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:43:32,412 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:43:32,412 - INFO -  * Restarting with stat
+2025-05-19 09:43:32,524 - WARNING -  * Debugger is active!
+2025-05-19 09:43:32,530 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:43:33,939 - INFO - 127.0.0.1 - - [19/May/2025 09:43:33] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:43:34,076 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:43:34,076 - INFO - 127.0.0.1 - - [19/May/2025 09:43:34] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:43:34,304 - INFO - 127.0.0.1 - - [19/May/2025 09:43:34] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:43:34,384 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:43:34,384 - INFO - 127.0.0.1 - - [19/May/2025 09:43:34] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:43:34,484 - INFO - 127.0.0.1 - - [19/May/2025 09:43:34] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:43:34,558 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:43:34,558 - INFO - 127.0.0.1 - - [19/May/2025 09:43:34] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:43:44,596 - INFO - Installing theHarvester...
+2025-05-19 09:43:44,600 - ERROR - Environment setup failed: [Errno 2] No such file or directory: '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/venv/bin/pip'
+2025-05-19 09:43:44,601 - ERROR - Scan failed: Environment setup failed
+2025-05-19 09:43:44,602 - INFO - 127.0.0.1 - - [19/May/2025 09:43:44] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:43:44,609 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:43:44,610 - INFO - 127.0.0.1 - - [19/May/2025 09:43:44] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:44:06,648 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:44:06,678 - INFO -  * Restarting with stat
+2025-05-19 09:44:06,857 - WARNING -  * Debugger is active!
+2025-05-19 09:44:06,862 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:44:08,922 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:44:08,942 - INFO -  * Restarting with stat
+2025-05-19 09:44:09,063 - WARNING -  * Debugger is active!
+2025-05-19 09:44:09,068 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:44:23,599 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:44:23,599 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:44:23,600 - INFO -  * Restarting with stat
+2025-05-19 09:44:23,713 - WARNING -  * Debugger is active!
+2025-05-19 09:44:23,719 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:44:24,563 - INFO - 127.0.0.1 - - [19/May/2025 09:44:24] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:44:24,665 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:44:24,666 - INFO - 127.0.0.1 - - [19/May/2025 09:44:24] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:44:31,549 - ERROR - Scan failed: Environment setup failed
+2025-05-19 09:44:31,550 - INFO - 127.0.0.1 - - [19/May/2025 09:44:31] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:44:31,562 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:44:31,562 - INFO - 127.0.0.1 - - [19/May/2025 09:44:31] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:44:55,152 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:44:55,153 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:44:55,153 - INFO -  * Restarting with stat
+2025-05-19 09:44:55,270 - WARNING -  * Debugger is active!
+2025-05-19 09:44:55,275 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:44:56,164 - INFO - 127.0.0.1 - - [19/May/2025 09:44:56] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:44:56,275 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:44:56,275 - INFO - 127.0.0.1 - - [19/May/2025 09:44:56] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:45:04,525 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 09:45:04,526 - INFO - 127.0.0.1 - - [19/May/2025 09:45:04] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:45:04,536 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:45:04,536 - INFO - 127.0.0.1 - - [19/May/2025 09:45:04] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:45:10,240 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 09:45:10,241 - INFO - 127.0.0.1 - - [19/May/2025 09:45:10] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:45:10,250 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:45:10,250 - INFO - 127.0.0.1 - - [19/May/2025 09:45:10] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:45:39,645 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:45:39,672 - INFO -  * Restarting with stat
+2025-05-19 09:45:39,852 - WARNING -  * Debugger is active!
+2025-05-19 09:45:39,858 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:45:48,042 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:45:48,062 - INFO -  * Restarting with stat
+2025-05-19 09:45:48,232 - WARNING -  * Debugger is active!
+2025-05-19 09:45:48,237 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:45:57,021 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:45:57,022 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:45:57,022 - INFO -  * Restarting with stat
+2025-05-19 09:45:57,134 - WARNING -  * Debugger is active!
+2025-05-19 09:45:57,138 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:45:58,157 - INFO - 127.0.0.1 - - [19/May/2025 09:45:58] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:45:58,256 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:45:58,256 - INFO - 127.0.0.1 - - [19/May/2025 09:45:58] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:46:04,803 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 09:46:04,803 - INFO - 127.0.0.1 - - [19/May/2025 09:46:04] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:46:04,808 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:46:04,808 - INFO - 127.0.0.1 - - [19/May/2025 09:46:04] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:46:17,942 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 09:46:17,942 - INFO - 127.0.0.1 - - [19/May/2025 09:46:17] "POST /tool/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 09:46:17,950 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:46:17,951 - INFO - 127.0.0.1 - - [19/May/2025 09:46:17] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:47:04,527 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:47:04,559 - INFO -  * Restarting with stat
+2025-05-19 09:47:04,735 - WARNING -  * Debugger is active!
+2025-05-19 09:47:04,742 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:47:17,144 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:47:17,167 - INFO -  * Restarting with stat
+2025-05-19 09:47:17,344 - WARNING -  * Debugger is active!
+2025-05-19 09:47:17,351 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:47:19,412 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/src/core/main.py', reloading
+2025-05-19 09:47:19,434 - INFO -  * Restarting with stat
+2025-05-19 09:47:19,556 - WARNING -  * Debugger is active!
+2025-05-19 09:47:19,561 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:47:33,460 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:47:33,460 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:47:33,461 - INFO -  * Restarting with stat
+2025-05-19 09:47:33,575 - WARNING -  * Debugger is active!
+2025-05-19 09:47:33,581 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:47:36,233 - INFO - 127.0.0.1 - - [19/May/2025 09:47:36] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:47:36,361 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:47:36,361 - INFO - 127.0.0.1 - - [19/May/2025 09:47:36] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:47:42,730 - INFO - 127.0.0.1 - - [19/May/2025 09:47:42] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:47:50,572 - INFO - 127.0.0.1 - - [19/May/2025 09:47:50] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:47:51,127 - INFO - 127.0.0.1 - - [19/May/2025 09:47:51] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:12,950 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:48:12,977 - INFO -  * Restarting with stat
+2025-05-19 09:48:13,138 - WARNING -  * Debugger is active!
+2025-05-19 09:48:13,143 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:48:27,349 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:48:27,349 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:48:27,350 - INFO -  * Restarting with stat
+2025-05-19 09:48:27,469 - WARNING -  * Debugger is active!
+2025-05-19 09:48:27,474 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:48:28,856 - INFO - 127.0.0.1 - - [19/May/2025 09:48:28] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:48:28,984 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:48:28,984 - INFO - 127.0.0.1 - - [19/May/2025 09:48:28] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:48:35,930 - INFO - 127.0.0.1 - - [19/May/2025 09:48:35] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:39,983 - INFO - 127.0.0.1 - - [19/May/2025 09:48:39] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:43,656 - INFO - 127.0.0.1 - - [19/May/2025 09:48:43] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:48,250 - INFO - 127.0.0.1 - - [19/May/2025 09:48:48] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:48,936 - INFO - 127.0.0.1 - - [19/May/2025 09:48:48] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:49,389 - INFO - 127.0.0.1 - - [19/May/2025 09:48:49] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:53,695 - INFO - 127.0.0.1 - - [19/May/2025 09:48:53] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:48:56,195 - INFO - 127.0.0.1 - - [19/May/2025 09:48:56] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:49:05,483 - INFO - 127.0.0.1 - - [19/May/2025 09:49:05] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:49:05,943 - INFO - 127.0.0.1 - - [19/May/2025 09:49:05] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:50:03,478 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:50:03,478 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:50:03,478 - INFO -  * Restarting with stat
+2025-05-19 09:50:03,592 - WARNING -  * Debugger is active!
+2025-05-19 09:50:03,598 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:50:06,239 - INFO - 127.0.0.1 - - [19/May/2025 09:50:06] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:50:06,360 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:50:06,360 - INFO - 127.0.0.1 - - [19/May/2025 09:50:06] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:50:12,874 - INFO - 127.0.0.1 - - [19/May/2025 09:50:12] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:53:42,630 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:53:42,631 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:53:42,631 - INFO -  * Restarting with stat
+2025-05-19 09:53:42,746 - WARNING -  * Debugger is active!
+2025-05-19 09:53:42,752 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:53:44,027 - INFO - 127.0.0.1 - - [19/May/2025 09:53:44] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:53:44,140 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:53:44,141 - INFO - 127.0.0.1 - - [19/May/2025 09:53:44] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:53:50,086 - INFO - 127.0.0.1 - - [19/May/2025 09:53:50] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:53:50,711 - INFO - 127.0.0.1 - - [19/May/2025 09:53:50] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:53:50,861 - INFO - 127.0.0.1 - - [19/May/2025 09:53:50] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:53:50,999 - INFO - 127.0.0.1 - - [19/May/2025 09:53:50] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:53:51,238 - INFO - 127.0.0.1 - - [19/May/2025 09:53:51] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:54:28,319 - INFO -  * Detected change in '/Users/tomharris/Developer/CyberCrate/tools/portable/theharvester/wrapper.py', reloading
+2025-05-19 09:54:28,348 - INFO -  * Restarting with stat
+2025-05-19 09:54:28,527 - WARNING -  * Debugger is active!
+2025-05-19 09:54:28,532 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:55:13,283 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:55:13,283 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:55:13,284 - INFO -  * Restarting with stat
+2025-05-19 09:55:13,405 - WARNING -  * Debugger is active!
+2025-05-19 09:55:13,411 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:55:15,868 - INFO - 127.0.0.1 - - [19/May/2025 09:55:15] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:55:16,021 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:55:16,021 - INFO - 127.0.0.1 - - [19/May/2025 09:55:16] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:55:24,059 - INFO - 127.0.0.1 - - [19/May/2025 09:55:24] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:27,786 - INFO - 127.0.0.1 - - [19/May/2025 09:55:27] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:34,811 - INFO - 127.0.0.1 - - [19/May/2025 09:55:34] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:35,243 - INFO - 127.0.0.1 - - [19/May/2025 09:55:35] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:35,472 - INFO - 127.0.0.1 - - [19/May/2025 09:55:35] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:35,646 - INFO - 127.0.0.1 - - [19/May/2025 09:55:35] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:37,796 - INFO - 127.0.0.1 - - [19/May/2025 09:55:37] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:38,200 - INFO - 127.0.0.1 - - [19/May/2025 09:55:38] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:38,457 - INFO - 127.0.0.1 - - [19/May/2025 09:55:38] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:55:42,580 - INFO - 127.0.0.1 - - [19/May/2025 09:55:42] "GET / HTTP/1.1" 200 -
+2025-05-19 09:55:42,639 - INFO - 127.0.0.1 - - [19/May/2025 09:55:42] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:55:47,048 - INFO - 127.0.0.1 - - [19/May/2025 09:55:47] "GET /module/theharvester_basics HTTP/1.1" 200 -
+2025-05-19 09:55:48,454 - INFO - 127.0.0.1 - - [19/May/2025 09:55:48] "GET / HTTP/1.1" 200 -
+2025-05-19 09:55:48,498 - INFO - 127.0.0.1 - - [19/May/2025 09:55:48] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:55:49,803 - INFO - 127.0.0.1 - - [19/May/2025 09:55:49] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:55:51,312 - INFO - 127.0.0.1 - - [19/May/2025 09:55:51] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:55:51,417 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:55:51,418 - INFO - 127.0.0.1 - - [19/May/2025 09:55:51] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:56:06,064 - INFO - 127.0.0.1 - - [19/May/2025 09:56:06] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:57:02,922 - INFO - 127.0.0.1 - - [19/May/2025 09:57:02] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:57:19,451 - INFO - 127.0.0.1 - - [19/May/2025 09:57:19] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:57:19,916 - INFO - 127.0.0.1 - - [19/May/2025 09:57:19] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:57:20,078 - INFO - 127.0.0.1 - - [19/May/2025 09:57:20] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 09:58:49,132 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:58:49,133 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:58:49,134 - INFO -  * Restarting with stat
+2025-05-19 09:58:49,250 - WARNING -  * Debugger is active!
+2025-05-19 09:58:49,256 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:58:53,217 - INFO - 127.0.0.1 - - [19/May/2025 09:58:53] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 09:58:53,368 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:58:53,368 - INFO - 127.0.0.1 - - [19/May/2025 09:58:53] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 09:59:03,072 - INFO - 127.0.0.1 - - [19/May/2025 09:59:03] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:04,740 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 10:00:04,741 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 10:00:04,741 - INFO -  * Restarting with stat
+2025-05-19 10:00:04,861 - WARNING -  * Debugger is active!
+2025-05-19 10:00:04,867 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 10:00:26,870 - INFO - 127.0.0.1 - - [19/May/2025 10:00:26] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 10:00:26,985 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 10:00:26,985 - INFO - 127.0.0.1 - - [19/May/2025 10:00:26] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 10:00:34,151 - INFO - 127.0.0.1 - - [19/May/2025 10:00:34] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:34,673 - INFO - 127.0.0.1 - - [19/May/2025 10:00:34] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:34,825 - INFO - 127.0.0.1 - - [19/May/2025 10:00:34] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:39,433 - INFO - 127.0.0.1 - - [19/May/2025 10:00:39] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:39,850 - INFO - 127.0.0.1 - - [19/May/2025 10:00:39] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:40,012 - INFO - 127.0.0.1 - - [19/May/2025 10:00:40] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:48,122 - INFO - 127.0.0.1 - - [19/May/2025 10:00:48] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:48,670 - INFO - 127.0.0.1 - - [19/May/2025 10:00:48] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:49,120 - INFO - 127.0.0.1 - - [19/May/2025 10:00:49] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:00:49,257 - INFO - 127.0.0.1 - - [19/May/2025 10:00:49] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:01:14,197 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 10:01:14,197 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 10:01:14,198 - INFO -  * Restarting with stat
+2025-05-19 10:01:14,309 - WARNING -  * Debugger is active!
+2025-05-19 10:01:14,316 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 10:01:15,605 - INFO - 127.0.0.1 - - [19/May/2025 10:01:15] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 10:01:15,763 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 10:01:15,764 - INFO - 127.0.0.1 - - [19/May/2025 10:01:15] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 10:01:27,639 - INFO - 127.0.0.1 - - [19/May/2025 10:01:27] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 10:01:27,759 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 10:01:27,760 - INFO - 127.0.0.1 - - [19/May/2025 10:01:27] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 10:01:44,476 - INFO - 127.0.0.1 - - [19/May/2025 10:01:44] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:03:46,684 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 10:03:46,684 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 10:03:46,684 - INFO -  * Restarting with stat
+2025-05-19 10:03:46,796 - WARNING -  * Debugger is active!
+2025-05-19 10:03:46,802 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 10:03:47,766 - INFO - 127.0.0.1 - - [19/May/2025 10:03:47] "[31m[1mGET /tools/theharvester/scan HTTP/1.1[0m" 405 -
+2025-05-19 10:05:53,037 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 10:05:53,038 - INFO - 127.0.0.1 - - [19/May/2025 10:05:53] "POST /tools/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 10:14:41,617 - INFO - 127.0.0.1 - - [19/May/2025 10:14:41] "[33mGET /tools/theharvester HTTP/1.1[0m" 404 -
+2025-05-19 10:14:44,426 - INFO - 127.0.0.1 - - [19/May/2025 10:14:44] "GET /tools HTTP/1.1" 200 -
+2025-05-19 10:14:46,226 - INFO - 127.0.0.1 - - [19/May/2025 10:14:46] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 10:14:46,335 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 10:14:46,336 - INFO - 127.0.0.1 - - [19/May/2025 10:14:46] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 10:14:50,986 - INFO - 127.0.0.1 - - [19/May/2025 10:14:50] "[33mGET /tools/theharvester HTTP/1.1[0m" 404 -
+2025-05-19 10:14:53,872 - INFO - 127.0.0.1 - - [19/May/2025 10:14:53] "GET /tools HTTP/1.1" 200 -
+2025-05-19 10:15:05,948 - INFO - 127.0.0.1 - - [19/May/2025 10:15:05] "GET /tool/nmap HTTP/1.1" 200 -
+2025-05-19 10:15:06,036 - INFO - 127.0.0.1 - - [19/May/2025 10:15:06] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 10:15:11,347 - INFO - 127.0.0.1 - - [19/May/2025 10:15:11] "GET /tools HTTP/1.1" 200 -
+2025-05-19 10:15:12,612 - INFO - 127.0.0.1 - - [19/May/2025 10:15:12] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 10:15:12,712 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 10:15:12,712 - INFO - 127.0.0.1 - - [19/May/2025 10:15:12] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 10:15:27,419 - INFO - 127.0.0.1 - - [19/May/2025 10:15:27] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:15:43,419 - INFO - 127.0.0.1 - - [19/May/2025 10:15:43] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-05-19 10:15:43,420 - INFO - 127.0.0.1 - - [19/May/2025 10:15:43] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-05-19 10:15:43,421 - INFO - 127.0.0.1 - - [19/May/2025 10:15:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-19 10:16:49,359 - INFO - 127.0.0.1 - - [19/May/2025 10:16:49] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 10:17:13,040 - INFO - 127.0.0.1 - - [19/May/2025 10:17:13] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 10:17:13,199 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 10:17:13,199 - INFO - 127.0.0.1 - - [19/May/2025 10:17:13] "GET /tool/theharvester/history HTTP/1.1" 200 -
+2025-05-19 10:17:23,966 - INFO - 127.0.0.1 - - [19/May/2025 10:17:23] "[33mPOST /tool/theharvester/scan HTTP/1.1[0m" 404 -
+2025-05-19 11:38:05,760 - INFO - 127.0.0.1 - - [19/May/2025 11:38:05] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 11:38:06,022 - INFO - 127.0.0.1 - - [19/May/2025 11:38:06] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:38:26,335 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 11:38:26,336 - INFO - 127.0.0.1 - - [19/May/2025 11:38:26] "POST /tools/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 11:38:26,349 - INFO - 127.0.0.1 - - [19/May/2025 11:38:26] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:38:42,014 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 11:38:42,016 - INFO - 127.0.0.1 - - [19/May/2025 11:38:42] "POST /tools/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 11:38:42,026 - INFO - 127.0.0.1 - - [19/May/2025 11:38:42] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:42:34,490 - INFO - 127.0.0.1 - - [19/May/2025 11:42:34] "GET /tool/theharvester HTTP/1.1" 200 -
+2025-05-19 11:42:34,683 - INFO - 127.0.0.1 - - [19/May/2025 11:42:34] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:42:53,274 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 11:42:53,275 - INFO - 127.0.0.1 - - [19/May/2025 11:42:53] "POST /tools/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 11:42:53,287 - INFO - 127.0.0.1 - - [19/May/2025 11:42:53] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:43:25,240 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 11:43:25,241 - INFO - 127.0.0.1 - - [19/May/2025 11:43:25] "[35m[1mPOST /tools/theharvester/scan HTTP/1.1[0m" 500 -
+2025-05-19 11:43:25,247 - INFO - 127.0.0.1 - - [19/May/2025 11:43:25] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:43:39,181 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 11:43:39,182 - INFO - 127.0.0.1 - - [19/May/2025 11:43:39] "POST /tools/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 11:43:39,182 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 11:43:39,182 - INFO - 127.0.0.1 - - [19/May/2025 11:43:39] "POST /tools/theharvester/scan HTTP/1.1" 200 -
+2025-05-19 11:43:39,193 - INFO - 127.0.0.1 - - [19/May/2025 11:43:39] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -
+2025-05-19 11:43:39,194 - INFO - 127.0.0.1 - - [19/May/2025 11:43:39] "[33mGET /tools/theharvester/history HTTP/1.1[0m" 404 -

@@ -324,28 +324,48 @@ def theharvester_interface():
     """TheHarvester tool interface"""
     return render_template('tool_theharvester.html')
 
-@app.route('/tool/theharvester/scan', methods=['POST'])
+@app.route('/tools/theharvester/scan', methods=['POST'])
 def theharvester_scan():
     try:
-        data = request.json
+        print("[FLASK DEBUG] Received POST to /tools/theharvester/scan")
+        data = request.get_json()
+        print(f"[FLASK DEBUG] Raw request data: {repr(data)}")
         target = data.get('target')
-        sources = data.get('sources')
-        options = data.get('options', {})
-
+        sources = data.get('sources', 'all')
+        options = {
+            'limit': data.get('limit', 50),
+            'verbose': data.get('verbose', False),
+            'output': data.get('output', None)
+        }
+        print(f"[FLASK DEBUG] target: {repr(target)}")
+        print(f"[FLASK DEBUG] sources: {repr(sources)}")
+        print(f"[FLASK DEBUG] options: {repr(options)}")
+        
         if not target:
+            print("[FLASK DEBUG] No target provided!")
+            return jsonify({'error': 'Target domain is required'}), 400
+            
+        wrapper = TheHarvesterWrapper()
+        result = wrapper.run_scan(target, sources, options)
+        
+        if not result['success']:
+            error_message = result.get('stderr', '') or result.get('error', 'Unknown error')
+            print(f"[FLASK DEBUG] Scan failed: {error_message}")
             return jsonify({
-                'success': False,
-                'error': 'Target is required'
-            }), 400
-
-        # Run the scan
-        result = theharvester_wrapper.run_scan(target, sources=sources, options=options)
-        return jsonify(result)
-    except Exception as e:
+                'error': f"Scan failed: {error_message}",
+                'command': result.get('command', ''),
+                'details': result
+            }), 500
+            
+        print("[FLASK DEBUG] Scan succeeded!")
         return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 400
+            'success': True,
+            'results': result['stdout'],
+            'command': result.get('command', '')
+        })
+    except Exception as e:
+        print(f"[FLASK DEBUG] Exception: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/tool/theharvester/history')
 def theharvester_history():
