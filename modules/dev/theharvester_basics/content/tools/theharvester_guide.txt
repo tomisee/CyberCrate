@@ -1,0 +1,49 @@
+TheHarvester Setup Guide
+=======================
+
+TheHarvester is a powerful tool for gathering information about a target domain. This guide will help you set up and verify your installation.
+
+Installation
+-----------
+1. The tool is already installed in the CyberCrate environment through the wrapper.
+2. To verify the installation, you can run a simple test scan:
+   - Open the Tools page in CyberCrate
+   - Select "TheHarvester" from the tools list
+   - Enter a test domain (e.g., example.com)
+   - Select "google" as the source
+   - Set a small limit (e.g., 10)
+   - Click "Run Scan"
+
+Basic Usage
+----------
+TheHarvester can be used to:
+- Discover subdomains
+- Find email addresses
+- Identify hosts
+- Gather employee names
+- Find open ports/banners
+- Discover virtual hosts
+
+Common Sources
+-------------
+- google: Google search engine
+- bing: Bing search engine
+- linkedin: LinkedIn profiles
+- twitter: Twitter profiles
+- github: GitHub repositories
+- all: All available sources
+
+Command Line Options
+------------------
+- -d: Domain to search
+- -b: Sources to use (comma-separated)
+- -l: Limit number of results
+- -v: Verbose output
+- -o: Output file
+
+Next Steps
+---------
+1. Try running a basic scan with a single source
+2. Experiment with different sources
+3. Practice interpreting the results
+4. Move on to the Domain Enumeration task 

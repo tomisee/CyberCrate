@@ -1,0 +1,73 @@
+Email Discovery with TheHarvester
+===============================
+
+This guide will teach you how to use TheHarvester to discover email addresses associated with a target domain.
+
+Understanding Email Discovery
+---------------------------
+Email discovery is a crucial part of reconnaissance that helps:
+- Identify potential targets for social engineering
+- Map organizational structure
+- Find contact information for security reporting
+- Understand email naming conventions
+
+Step-by-Step Process
+------------------
+1. Basic Email Discovery
+   - Start with common sources
+   - Use: google,bing,linkedin
+   - Example command: theHarvester -d example.com -b google,bing,linkedin -l 100
+
+2. Advanced Email Discovery
+   - Add more sources for comprehensive results
+   - Include: twitter,github,all
+   - Use verbose mode for detailed output
+   - Example command: theHarvester -d example.com -b all -l 200 -v
+
+3. Result Analysis
+   - Look for:
+     * Email addresses
+     * Employee names
+     * Job titles
+     * Department information
+     * Email patterns
+
+Best Practices
+------------
+1. Start with a small limit to verify results
+2. Use multiple sources for better coverage
+3. Save results to a file for analysis
+4. Document discovered email patterns
+5. Verify email addresses when possible
+
+Common Challenges
+---------------
+1. Rate limiting from search engines
+2. False positives in results
+3. Incomplete data from some sources
+4. Need for manual verification
+5. Privacy concerns and legal considerations
+
+Tips for Success
+--------------
+1. Use the -v flag for verbose output
+2. Look for email patterns (e.g., first.last@domain.com)
+3. Document naming conventions
+4. Keep track of discovered emails
+5. Respect privacy and legal boundaries
+
+Legal and Ethical Considerations
+-----------------------------
+1. Only use for authorized testing
+2. Respect privacy laws and regulations
+3. Use discovered information responsibly
+4. Document your authorization
+5. Follow responsible disclosure practices
+
+Next Steps
+---------
+1. Practice with different domains
+2. Experiment with various source combinations
+3. Learn to analyze and verify results
+4. Combine with other tools for verification
+5. Document your findings properly 

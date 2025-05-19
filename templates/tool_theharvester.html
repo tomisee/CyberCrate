@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TheHarvester - CyberCrate</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tool-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .scan-form { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 20px; }
+        .output { background: #f8f9fa; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-family: monospace; margin-top: 20px; }
+        .history-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; }
+        .history-table th { background: #f8f9fa; padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; }
+        .history-table td { padding: 12px; border-bottom: 1px solid #e9ecef; }
+        .history-table tr:hover { background: #f8f9fa; }
+        .btn { padding: 8px 16px; border-radius: 4px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-primary:hover { background: #2563eb; }
+        .input-field { width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 4px; margin-bottom: 12px; }
+        .loading { display: none; margin-top: 10px; }
+        .loading.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="tool-container">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">TheHarvester OSINT Tool</h1>
+            <div class="flex space-x-4">
+                <button onclick="showHelp()" class="btn btn-primary">Help</button>
+            </div>
+        </div>
+        <div class="scan-form">
+            <h2 class="text-xl font-semibold mb-4">Domain & Email Reconnaissance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <input type="text" id="target" class="input-field" placeholder="Enter domain (e.g. example.com)">
+                    <input type="text" id="sources" class="input-field" placeholder="Sources (e.g. google,bing,all)">
+                    <input type="number" id="limit" class="input-field" placeholder="Result limit (e.g. 100)">
+                    <input type="text" id="outputFile" class="input-field" placeholder="Output file (optional)">
+                    <div class="flex space-x-4">
+                        <button onclick="runScan()" class="btn btn-primary">Run Scan</button>
+                        <button onclick="clearResults()" class="btn btn-primary">Clear</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex flex-col space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="verbose" class="mr-2">
+                            Verbose Output
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="loading" id="loading">
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                    <span>Running scan...</span>
+                </div>
+            </div>
+        </div>
+        <div class="output" id="output"></div>
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold mb-4">Scan History</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Target</th>
+                        <th>Date</th>
+                        <th>Sources</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function loadHistory() {
+            try {
+                const response = await fetch('/tool/theharvester/history');
+                const history = await response.json();
+                const tbody = document.querySelector('#historyTableBody');
+                tbody.innerHTML = '';
+                history.forEach(scan => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${scan.target}</td>
+                        <td>${new Date(scan.scan_date).toLocaleString()}</td>
+                        <td>${scan.sources}</td>
+                        <td>
+                            <span class="px-2 py-1 rounded ${scan.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${scan.status}
+                            </span>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Failed to load history:', error);
+            }
+        }
+        async function runScan() {
+            const target = document.getElementById('target').value;
+            const sources = document.getElementById('sources').value;
+            const limit = document.getElementById('limit').value;
+            const outputFile = document.getElementById('outputFile').value;
+            const verbose = document.getElementById('verbose').checked;
+            if (!target) {
+                alert('Please enter a target domain.');
+                return;
+            }
+            const options = {};
+            if (limit) options.limit = limit;
+            if (outputFile) options.output = outputFile;
+            if (verbose) options.verbose = true;
+            try {
+                document.getElementById('loading').classList.add('active');
+                const response = await fetch('/tool/theharvester/scan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        target: target,
+                        sources: sources,
+                        options: options
+                    })
+                });
+                const result = await response.json();
+                document.getElementById('output').textContent = result.success ? result.stdout : result.error;
+                loadHistory();
+            } catch (error) {
+                document.getElementById('output').textContent = 'Error: ' + error.message;
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+        function clearResults() {
+            document.getElementById('output').textContent = '';
+            document.getElementById('target').value = '';
+            document.getElementById('sources').value = '';
+            document.getElementById('limit').value = '';
+            document.getElementById('outputFile').value = '';
+        }
+        function showHelp() {
+            alert('Enter a domain, select sources (comma-separated), set a result limit, and optionally specify an output file. Use verbose for more details.');
+        }
+        loadHistory();
+    </script>
+</body>
+</html> 

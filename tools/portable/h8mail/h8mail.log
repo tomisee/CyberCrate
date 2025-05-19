@@ -385,3 +385,132 @@
 2025-05-09 12:29:53,121 - INFO - 127.0.0.1 - - [09/May/2025 12:29:53] "POST /tool/h8mail/scan HTTP/1.1" 200 -
 2025-05-09 12:29:53,131 - ERROR - Failed to retrieve scan history: no such table: scan_history
 2025-05-09 12:29:53,131 - INFO - 127.0.0.1 - - [09/May/2025 12:29:53] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-09 13:35:49,924 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-09 13:35:49,924 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 13:35:49,925 - INFO -  * Restarting with stat
+2025-05-09 13:35:50,040 - WARNING -  * Debugger is active!
+2025-05-09 13:35:50,049 - INFO -  * Debugger PIN: 142-055-502
+2025-05-09 13:35:56,131 - INFO - 127.0.0.1 - - [09/May/2025 13:35:56] "GET / HTTP/1.1" 200 -
+2025-05-09 13:35:56,186 - INFO - 127.0.0.1 - - [09/May/2025 13:35:56] "GET /progress HTTP/1.1" 200 -
+2025-05-09 13:36:00,224 - INFO - 127.0.0.1 - - [09/May/2025 13:36:00] "GET /module/Basic_Network_Scanning HTTP/1.1" 200 -
+2025-05-09 13:36:02,212 - INFO - 127.0.0.1 - - [09/May/2025 13:36:02] "POST /progress HTTP/1.1" 200 -
+2025-05-09 13:36:03,090 - INFO - 127.0.0.1 - - [09/May/2025 13:36:03] "POST /progress HTTP/1.1" 200 -
+2025-05-09 13:36:04,273 - INFO - 127.0.0.1 - - [09/May/2025 13:36:04] "POST /progress HTTP/1.1" 200 -
+2025-05-09 13:36:09,930 - INFO - 127.0.0.1 - - [09/May/2025 13:36:09] "GET / HTTP/1.1" 200 -
+2025-05-09 13:36:09,997 - INFO - 127.0.0.1 - - [09/May/2025 13:36:09] "GET /progress HTTP/1.1" 200 -
+2025-05-09 13:36:11,610 - INFO - 127.0.0.1 - - [09/May/2025 13:36:11] "GET /module/Basic_Network_Scanning HTTP/1.1" 200 -
+2025-05-09 13:36:12,404 - INFO - 127.0.0.1 - - [09/May/2025 13:36:12] "POST /progress HTTP/1.1" 200 -
+2025-05-09 13:36:13,252 - INFO - 127.0.0.1 - - [09/May/2025 13:36:13] "GET / HTTP/1.1" 200 -
+2025-05-09 13:36:13,289 - INFO - 127.0.0.1 - - [09/May/2025 13:36:13] "GET /progress HTTP/1.1" 200 -
+2025-05-09 13:36:16,825 - INFO - 127.0.0.1 - - [09/May/2025 13:36:16] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-09 13:36:18,105 - INFO - 127.0.0.1 - - [09/May/2025 13:36:18] "GET / HTTP/1.1" 200 -
+2025-05-09 13:36:18,147 - INFO - 127.0.0.1 - - [09/May/2025 13:36:18] "GET /progress HTTP/1.1" 200 -
+2025-05-09 13:36:18,639 - INFO - 127.0.0.1 - - [09/May/2025 13:36:18] "GET /tools HTTP/1.1" 200 -
+2025-05-09 13:36:23,408 - INFO - 127.0.0.1 - - [09/May/2025 13:36:23] "GET / HTTP/1.1" 200 -
+2025-05-09 13:36:23,457 - INFO - 127.0.0.1 - - [09/May/2025 13:36:23] "GET /progress HTTP/1.1" 200 -
+2025-05-09 13:36:53,573 - INFO - 127.0.0.1 - - [09/May/2025 13:36:53] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:20:12,729 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:20:12,729 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:20:12,730 - INFO -  * Restarting with stat
+2025-05-19 09:20:12,852 - WARNING -  * Debugger is active!
+2025-05-19 09:20:12,858 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:20:16,365 - INFO - 127.0.0.1 - - [19/May/2025 09:20:16] "GET / HTTP/1.1" 200 -
+2025-05-19 09:20:16,416 - INFO - 127.0.0.1 - - [19/May/2025 09:20:16] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:20:16,450 - INFO - 127.0.0.1 - - [19/May/2025 09:20:16] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-05-19 09:20:16,545 - INFO - 127.0.0.1 - - [19/May/2025 09:20:16] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-05-19 09:20:16,853 - INFO - 127.0.0.1 - - [19/May/2025 09:20:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-19 09:20:46,418 - INFO - 127.0.0.1 - - [19/May/2025 09:20:46] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:21:16,420 - INFO - 127.0.0.1 - - [19/May/2025 09:21:16] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:21:17,875 - INFO - 127.0.0.1 - - [19/May/2025 09:21:17] "GET /module/Basic_Network_Scanning HTTP/1.1" 200 -
+2025-05-19 09:21:19,203 - INFO - 127.0.0.1 - - [19/May/2025 09:21:19] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:21:20,896 - INFO - 127.0.0.1 - - [19/May/2025 09:21:20] "GET / HTTP/1.1" 200 -
+2025-05-19 09:21:20,939 - INFO - 127.0.0.1 - - [19/May/2025 09:21:20] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:21:36,632 - INFO - 127.0.0.1 - - [19/May/2025 09:21:36] "GET /module/Basic_Network_Scanning HTTP/1.1" 200 -
+2025-05-19 09:21:41,494 - INFO - 127.0.0.1 - - [19/May/2025 09:21:41] "GET /module_resource/Basic_Network_Scanning/content/tools/nmap_guide.txt HTTP/1.1" 200 -
+2025-05-19 09:22:21,393 - INFO - 127.0.0.1 - - [19/May/2025 09:22:21] "GET / HTTP/1.1" 200 -
+2025-05-19 09:22:21,448 - INFO - 127.0.0.1 - - [19/May/2025 09:22:21] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:22:24,386 - INFO - 127.0.0.1 - - [19/May/2025 09:22:24] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:22:27,268 - INFO - 127.0.0.1 - - [19/May/2025 09:22:27] "GET /tool/nmap HTTP/1.1" 200 -
+2025-05-19 09:22:27,370 - INFO - 127.0.0.1 - - [19/May/2025 09:22:27] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 09:22:39,190 - INFO - 127.0.0.1 - - [19/May/2025 09:22:39] "POST /tool/nmap/scan HTTP/1.1" 200 -
+2025-05-19 09:22:39,199 - INFO - 127.0.0.1 - - [19/May/2025 09:22:39] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 09:22:50,291 - INFO - 127.0.0.1 - - [19/May/2025 09:22:50] "POST /tool/nmap/scan HTTP/1.1" 200 -
+2025-05-19 09:22:50,301 - INFO - 127.0.0.1 - - [19/May/2025 09:22:50] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 09:24:31,821 - INFO - 127.0.0.1 - - [19/May/2025 09:24:31] "GET /tool/nmap HTTP/1.1" 200 -
+2025-05-19 09:24:31,962 - INFO - 127.0.0.1 - - [19/May/2025 09:24:31] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 09:24:58,694 - INFO - 127.0.0.1 - - [19/May/2025 09:24:58] "POST /tool/nmap/scan HTTP/1.1" 200 -
+2025-05-19 09:24:58,701 - INFO - 127.0.0.1 - - [19/May/2025 09:24:58] "GET /tool/nmap/history HTTP/1.1" 200 -
+2025-05-19 09:25:15,133 - INFO - 127.0.0.1 - - [19/May/2025 09:25:15] "GET /tools HTTP/1.1" 200 -
+2025-05-19 09:25:16,593 - INFO - 127.0.0.1 - - [19/May/2025 09:25:16] "GET /tool/h8mail HTTP/1.1" 200 -
+2025-05-19 09:25:16,690 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:25:16,690 - INFO - 127.0.0.1 - - [19/May/2025 09:25:16] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-19 09:25:23,658 - INFO - Installing h8mail...
+2025-05-19 09:25:24,171 - INFO - Environment setup completed successfully
+2025-05-19 09:25:25,639 - ERROR - Failed to store scan results: no such table: scan_history
+2025-05-19 09:25:25,640 - INFO - 127.0.0.1 - - [19/May/2025 09:25:25] "POST /tool/h8mail/scan HTTP/1.1" 200 -
+2025-05-19 09:25:25,650 - ERROR - Failed to retrieve scan history: no such table: scan_history
+2025-05-19 09:25:25,650 - INFO - 127.0.0.1 - - [19/May/2025 09:25:25] "GET /tool/h8mail/history HTTP/1.1" 200 -
+2025-05-19 09:25:45,274 - INFO - 127.0.0.1 - - [19/May/2025 09:25:45] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:25:53,434 - INFO - 127.0.0.1 - - [19/May/2025 09:25:53] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:25:54,543 - INFO - 127.0.0.1 - - [19/May/2025 09:25:54] "GET /cheatsheet/nmap HTTP/1.1" 200 -
+2025-05-19 09:25:57,277 - INFO - 127.0.0.1 - - [19/May/2025 09:25:57] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:25:57,954 - INFO - 127.0.0.1 - - [19/May/2025 09:25:57] "GET /cheatsheet/metasploit HTTP/1.1" 200 -
+2025-05-19 09:26:07,333 - INFO - 127.0.0.1 - - [19/May/2025 09:26:07] "GET /cheatsheets HTTP/1.1" 200 -
+2025-05-19 09:26:19,716 - INFO - 127.0.0.1 - - [19/May/2025 09:26:19] "POST /tool/nmap/scan HTTP/1.1" 200 -
+2025-05-19 09:26:39,700 - INFO - 127.0.0.1 - - [19/May/2025 09:26:39] "GET / HTTP/1.1" 200 -
+2025-05-19 09:26:39,741 - INFO - 127.0.0.1 - - [19/May/2025 09:26:39] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:27:09,722 - INFO - 127.0.0.1 - - [19/May/2025 09:27:09] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:27:39,711 - INFO - 127.0.0.1 - - [19/May/2025 09:27:39] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:28:09,711 - INFO - 127.0.0.1 - - [19/May/2025 09:28:09] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:32:37,467 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:32:37,468 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:32:37,468 - INFO -  * Restarting with stat
+2025-05-19 09:32:37,582 - WARNING -  * Debugger is active!
+2025-05-19 09:32:37,588 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:32:42,381 - INFO - 127.0.0.1 - - [19/May/2025 09:32:42] "GET / HTTP/1.1" 200 -
+2025-05-19 09:32:42,469 - INFO - 127.0.0.1 - - [19/May/2025 09:32:42] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:32:44,476 - INFO - 127.0.0.1 - - [19/May/2025 09:32:44] "[31m[1mGET /module/TheHarvester_Basics HTTP/1.1[0m" 400 -
+2025-05-19 09:33:32,319 - INFO - 127.0.0.1 - - [19/May/2025 09:33:32] "[31m[1mGET /module/TheHarvester_Basics HTTP/1.1[0m" 400 -
+2025-05-19 09:33:34,482 - INFO - 127.0.0.1 - - [19/May/2025 09:33:34] "GET / HTTP/1.1" 200 -
+2025-05-19 09:33:34,517 - INFO - 127.0.0.1 - - [19/May/2025 09:33:34] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:33:56,513 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:33:56,513 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:33:56,513 - INFO -  * Restarting with stat
+2025-05-19 09:33:56,636 - WARNING -  * Debugger is active!
+2025-05-19 09:33:56,642 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:33:58,243 - INFO - 127.0.0.1 - - [19/May/2025 09:33:58] "GET / HTTP/1.1" 200 -
+2025-05-19 09:33:58,275 - INFO - 127.0.0.1 - - [19/May/2025 09:33:58] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:33:59,011 - INFO - 127.0.0.1 - - [19/May/2025 09:33:59] "GET / HTTP/1.1" 200 -
+2025-05-19 09:33:59,046 - INFO - 127.0.0.1 - - [19/May/2025 09:33:59] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:33:59,173 - INFO - 127.0.0.1 - - [19/May/2025 09:33:59] "GET / HTTP/1.1" 200 -
+2025-05-19 09:33:59,194 - INFO - 127.0.0.1 - - [19/May/2025 09:33:59] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:33:59,591 - INFO - 127.0.0.1 - - [19/May/2025 09:33:59] "[31m[1mGET /module/TheHarvester_Basics HTTP/1.1[0m" 400 -
+2025-05-19 09:34:39,013 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2025-05-19 09:34:39,013 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 09:34:39,014 - INFO -  * Restarting with stat
+2025-05-19 09:34:39,125 - WARNING -  * Debugger is active!
+2025-05-19 09:34:39,131 - INFO -  * Debugger PIN: 588-460-015
+2025-05-19 09:34:43,235 - INFO - 127.0.0.1 - - [19/May/2025 09:34:43] "[33mGET /module/TheHarvester_Basics HTTP/1.1[0m" 404 -
+2025-05-19 09:34:44,166 - INFO - 127.0.0.1 - - [19/May/2025 09:34:44] "[33mGET /module/TheHarvester_Basics HTTP/1.1[0m" 404 -
+2025-05-19 09:34:48,024 - INFO - 127.0.0.1 - - [19/May/2025 09:34:48] "GET /module/Basic_Network_Scanning HTTP/1.1" 200 -
+2025-05-19 09:34:48,301 - INFO - 127.0.0.1 - - [19/May/2025 09:34:48] "GET / HTTP/1.1" 200 -
+2025-05-19 09:34:48,330 - INFO - 127.0.0.1 - - [19/May/2025 09:34:48] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:34:49,595 - INFO - 127.0.0.1 - - [19/May/2025 09:34:49] "GET / HTTP/1.1" 200 -
+2025-05-19 09:34:49,627 - INFO - 127.0.0.1 - - [19/May/2025 09:34:49] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:34:50,140 - INFO - 127.0.0.1 - - [19/May/2025 09:34:50] "GET /module/theharvester_basics HTTP/1.1" 200 -
+2025-05-19 09:34:53,954 - INFO - 127.0.0.1 - - [19/May/2025 09:34:53] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:34:55,497 - INFO - 127.0.0.1 - - [19/May/2025 09:34:55] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:34:57,050 - INFO - 127.0.0.1 - - [19/May/2025 09:34:57] "POST /progress HTTP/1.1" 200 -
+2025-05-19 09:34:58,273 - INFO - 127.0.0.1 - - [19/May/2025 09:34:58] "GET / HTTP/1.1" 200 -
+2025-05-19 09:34:58,318 - INFO - 127.0.0.1 - - [19/May/2025 09:34:58] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:35:15,328 - INFO - 127.0.0.1 - - [19/May/2025 09:35:15] "GET /module/theharvester_basics HTTP/1.1" 200 -
+2025-05-19 09:35:16,320 - INFO - 127.0.0.1 - - [19/May/2025 09:35:16] "GET /module_resource/theharvester_basics/content/tools/theharvester_guide.txt HTTP/1.1" 200 -
+2025-05-19 09:35:45,531 - INFO - 127.0.0.1 - - [19/May/2025 09:35:45] "GET / HTTP/1.1" 200 -
+2025-05-19 09:35:45,585 - INFO - 127.0.0.1 - - [19/May/2025 09:35:45] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:36:15,591 - INFO - 127.0.0.1 - - [19/May/2025 09:36:15] "GET /progress HTTP/1.1" 200 -
+2025-05-19 09:36:45,591 - INFO - 127.0.0.1 - - [19/May/2025 09:36:45] "GET /progress HTTP/1.1" 200 -

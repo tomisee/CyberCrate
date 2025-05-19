@@ -9,6 +9,7 @@ from flask import Flask, render_template, jsonify, request, send_from_directory,
 import yaml
 from tools.portable.h8mail.wrapper import H8mailWrapper
 from tools.portable.nmap.wrapper import NmapWrapper
+from tools.portable.theharvester.wrapper import TheHarvesterWrapper
 
 # Add the project root to the Python path
 project_root = Path(__file__).parent.parent.parent
@@ -22,6 +23,7 @@ app = Flask(__name__,
 # Initialize h8mail wrapper
 h8mail_wrapper = H8mailWrapper()
 nmap_wrapper = NmapWrapper()
+theharvester_wrapper = TheHarvesterWrapper()
 
 #Key element, this creates a module box object that contains the manifest and content of a module
 #The manifest is the metadata of the module, and the content is the files of the module
@@ -316,6 +318,45 @@ def serve_module_resource(module_name, resource_path):
                 else:
                     return f"Resource not found: {resource_path}", 404
     return "Module not found", 404
+
+@app.route('/tool/theharvester')
+def theharvester_interface():
+    """TheHarvester tool interface"""
+    return render_template('tool_theharvester.html')
+
+@app.route('/tool/theharvester/scan', methods=['POST'])
+def theharvester_scan():
+    try:
+        data = request.json
+        target = data.get('target')
+        sources = data.get('sources')
+        options = data.get('options', {})
+
+        if not target:
+            return jsonify({
+                'success': False,
+                'error': 'Target is required'
+            }), 400
+
+        # Run the scan
+        result = theharvester_wrapper.run_scan(target, sources=sources, options=options)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
+
+@app.route('/tool/theharvester/history')
+def theharvester_history():
+    try:
+        history = theharvester_wrapper.get_scan_history()
+        return jsonify(history)
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
 
 #This is the main function that runs the web server
 def main():

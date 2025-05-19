@@ -1,0 +1,39 @@
+tasks:
+  - id: task1
+    title: Setting Up TheHarvester
+    description: Install and configure TheHarvester for reconnaissance
+    resources:
+      - tools/theharvester_guide.txt
+    expected_output: Successfully installed TheHarvester and verified it works
+    validation:
+      type: command
+      command: theHarvester -d example.com -b google -l 10
+      success_criteria:
+        - return_code: 0
+        - output_contains: "Starting harvesting"
+
+  - id: task2
+    title: Domain Enumeration
+    description: Learn how to perform domain enumeration using TheHarvester
+    resources:
+      - tools/domain_enumeration_guide.txt
+    expected_output: Successfully gathered subdomains and other domain information
+    validation:
+      type: command
+      command: theHarvester -d example.com -b google,bing,linkedin -l 50
+      success_criteria:
+        - return_code: 0
+        - output_contains: "Hosts found"
+
+  - id: task3
+    title: Email Discovery
+    description: Learn how to discover email addresses using TheHarvester
+    resources:
+      - tools/email_discovery_guide.txt
+    expected_output: Successfully discovered email addresses associated with a domain
+    validation:
+      type: command
+      command: theHarvester -d example.com -b all -l 100 -v
+      success_criteria:
+        - return_code: 0
+        - output_contains: "Emails found" 
